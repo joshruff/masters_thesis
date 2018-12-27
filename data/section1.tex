@@ -120,6 +120,7 @@ This band has primary allocations to several different services, and is availabl
  \centering
  \includegraphics[scale=1]{Candidate_Bands.PNG}
  \caption{Figure from AFE56 final report}
+ \label{fig:Candidates}
  \end{figure}
  
 \subsection{Channel Modeling and Security}
@@ -149,11 +150,29 @@ AVSI chose this band because... [Need a source]
 The 2015 World Radio Confernce (WRC-15) made changes to the spectrum allocations in and around the radio altimeter (RA) band. New allocations for 5G systems in the 3.7 GHz (3600-4200 MHz) and 4.5 GHz (4400 - 4900 MHz)
 
 \section{Overview of Radio Altimeter Functionality}
+
+\subsection{Basic Overview and Applications}
 The 4.2-4.4 GHz band was previously allocated exclusively to radio altimeters and transponder systems associated with altimetry. The altimeter functions to actively and continuously provide height measurements of an aircraft above the surface of the Earth. The highest degree of accuracy is expected in the approach, landing, and climb phases of flight. This accuracy must be maintained through all types of ground reflectivity. The height measured by an altimeter has a variety of uses in safety critical systems. The height functions as an input The Terrain Awareness Warning System, which gives the pilot a  ''Pull Up'' warning at a predetermined unsafe altitude and descent rate. The height from altimeters also functions as input for Collision Avoidance, Weather, Navigation, and Autopilot systems. Radio Altimeters are expected to operate in these functions through the lifetime of the Aircraft they are installed on, which results in Altimeters used in excess of 30 years.
 
+\subsection{Calculating the Height From a Time Delay}
 There are two primary types of altimeters in use today. The first are Frequency Modulated Carrier Wave (FMCW) Altimeters. FMCW altimeters use a transmitter and receiver with separate antennas. The signal from the transmit antenna travels to the ground, is reflected, and returns to the aircraft. Due to the constant propagation speed, the return time of the signal is proportional to the height of the aircraft above the surface. 
+\begin{figure}
+ \centering
+ \includegraphics[scale=0.5]{FMCW_Example.PNG}
+ \caption{Figure from ITU-R M.2059-0}
+ \label{fig:FMCW}
+\end{figure}
 
+The signal travel time is based on the return of a signal of the same frequency as the transmit signal. One method for calculating the travel time of a signal involves taking the difference between the frequency of the return signal at the current time and the frequency of the transmit signal at the current time, $\Delta f$. As shown in Figure~\ref{fig:FMCW}, given a constant waveform, the return time of a signal is:
 
-\section{Simulating Flight Conditions in the Lab}
+$$\Delta t = \frac{\Delta f}{df/dt}$$
 
+Once $\Delta t$ is calculated, it the height can be determined using the speed of light: 
 
+$$H = \frac{c}{2\Delta t} $$
+
+While not relying on a frequency modulated waveform, pulsed radar altimeters use a series of discrete pulses to track the current height of the aircraft. The $\Delta t$ between two pulses is used to calculate the height in the same manner that an FMCW altimeter does. Thus, for any altimeter under test in a lab setting, the time delay of the signal between the Altimeter TX and RX must be simulated to provide an accurate representation of real conditions. 
+\subsection{Attenuation of the Altimeter Signal in Free Space}
+A signal traveling from Altimeter Transmit and back to receive passes through multiple different sources of gain and attenuation. There is attenuation from cable losses, gain from the TX antenna, free space path loss as the signal travels toward the ground, loss from the scattering of the signal by the ground, path loss of the return signal, a gain from the receive antenna, and finally the attenuation from return cable losses. The DO-155 standards specify the worst case signal attenuation for different heights, standardized antennas,   ground scattering environments, and standardized cable attenuations. Like the time delay, any Altimeter lab setup has to simulate the DO-155 attenuation for various heights to be realistic. 
+\subsection{Conclusions}
+Radio Altimeters are a safety critical system in any aircraft, the output of which is used by other important airborn systems. Altimeters use the time it takes a signal to travel to the ground and back to calculate the height of an aircraft off the ground, and must be able to pick up a return signal which has been attenuated significantly depending on the height. To test radio altimeters in a lab setting, both the time delay and attenuation experienced by a real signal must be simulated. 
