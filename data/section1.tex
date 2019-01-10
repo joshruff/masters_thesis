@@ -76,6 +76,8 @@ It was considered critical that WAIC systems be sufficiently isolated from ISM a
 \subsection{Candidate Bands}
 Based on these criteria, the AFE 56 committee performed a review of major candidate bands for WAIC systems. The committee provided a synopsis of relevant characteristics of each candidate band and rated the band according to it's suitability. AVSI performed this process with a goal of helping future working groups to prioritize future efforts at reserving spectrum allocation. 
 
+% Temporarily removed list of candidate bands
+
 %\subsubsection{4.200 - 4.400 GHz}
 %At the time of AFE56, the 4.2-4.4 GHz band was exclusively allocated to radio altimeters~\cite{ferrell_feasibility_2007}. The committee found that technical hurdles in this band consisted primarily of coexisting with radio altimetry services. This coexistence could be accomplished through isolation (altimeter pulse signals do not occupy the full band, so a WAIC system could occupy the band edges)~\cite{ferrell_feasibility_2007}. Despite this possibility, the committee anticipated proof of noninterference would be a significant hurldle for WAIC systems to overcome during the certification process. Proof of benign levels of interference would likely have to come in both theoretical forms and in the form of testing of a candidate WAIC system with real altimeter systems~\cite{ferrell_feasibility_2007}. These regulatory hurdles made the 4.200 - 4.400 GHz band relatively unattractive from the perspective of AFE 56. However, since the band was exclusively occupied by aeronautical services, it remained under consideration~\cite{ferrell_feasibility_2007}. 
 
@@ -142,35 +144,37 @@ The committee came to the conclusion that although there were numerous hurdles i
 \item Work with regulators to develop a streamlined certification process for wireless sensing networks once these standards are developed
 \end{itemize}
  
- With the feasibility study complete, the AVSI partners moved on to the task of acquiring spectrum for wireless networks on aircraft. 
+With the feasibility study complete, the AVSI partners moved on to the task of acquiring spectrum for wireless networks on aircraft. 
  
 \section{Selecting a Suitable WAIC Band}
-In AFE 73, AVSI followed up on the work completed in AFE 56. The list of candidate bands was narrowed down to three considered at the World Radio Conference (WRC), which then were the subject of a compatibility study. Following the compatibility study, it was determined that the radio altimeter band would be theoretically compatible, and the occupants were willing to work with AVSI for the acquisition. 
-\subsection{Narrowing Down the Candidate Bands}
-Somehow [Need a source], this list of candidate bands was narrowed down to  
-\subsection{WRC-15 Compatibility Study}
+In AFE 73, AVSI followed up on the work completed in AFE 56. The list of candidate bands was narrowed down to three at the World Radio Conference in 2015 (WRC-15), which then were the subject of a compatibility study. This process concluded with the final selection of a final WAIC band which was approved at WRC-15.
+\subsection{Assessment of Bands between 960 MHz and 15.7 GHz}
+At WRC-12, the ITU recommended in Resolution 423 that bands from 960 MHz to 15.7 GHz be considered for potential WAIC allocation~\cite{noauthor_consideration_2014}. The ITU eliminated bands below this range because the antenna size requirements were incompatible with WAIC implementation requirements. Bands above this range were to be considered only after all possibilities in this range were exhausted. 
 
-\subsection{Selecting the Altimeter Band}
-The altimeter manufacturers were on board which made acquiring the spectrum in this band politically feasible. [Need a source]
+The ITU took all bands with existing allocations to aeronautical mobile or aeronautical radio-navigation services into consideration. Bands in this range which fit this criteria were considered in an initial assessment. The purpose of the initial assessment was to eliminates bands with undue burden of a regulatory or technical nature. Technical burdens could involve an excessive number or difficulty of necessary band-sharing studies, while regulatory burdens could involve co-occupants of a band outside of the aerospace industry. After the initial assessment, the 2.7-2.9 GHz, 4.2-4.4 GHz, and 5.35 - 5.46 GHz bands were considered the three most promising candidates for a potential WAIC Allocation. This recommendation precipitated a theoretical compatibility study for these bands at WRC-15~\cite{noauthor_consideration_2014}.  
 
-\subsection{Statement of The Allocation}
-The 2015 World Radio Conference (WRC-15) made changes to the spectrum allocations in and around the radio altimeter (RA) band. New allocations for 5G systems in the 3.7 GHz (3600-4200 MHz) and 4.5 GHz (4400 - 4900 MHz)
+\subsection{Compatibility Study}
+The three bands selected in the initial assessment for more detailed analysis underwent a theoretical compatibility study. Existing ground based radar systems in the 2.8 and 5.4 GHz bands were found to be incompatible with the requirements for WAIC implementations, which left the 4.3 GHz band as the only remaining option. The ITU recommended this band for allocation for WAIC Systems~\cite{noauthor_consideration_2014}.
+
+\subsection{Relevant WRC-15 Allocations}
+The 2015 World Radio Conference (WRC-15) made changes to the spectrum allocations in and around the radio altimeter (RA) band~\cite{noauthor_final_2015}. The 4.2-4.4 GHz band received an allocation for WAIC systems pending the experimental verification of compatibility. Additionally, new allocations for 5G systems in the 3.7 GHz (3600-4200 MHz) and 4.5 GHz (4400 - 4900 MHz) bands directly adjacent to the altimeter band would lead to experimental band-sharing studies. 
 
 \section{Overview of Radio Altimeter Functionality}
-
+The allocation of the 4.3 GHz band for WAIC necessitates an experimental study on the effects of interference on radar altimeters. This section provides background information on the functionality of radar altimeters which is relevant to the experimental design and setup.
 \subsection{Basic Overview and Applications}
-The 4.2-4.4 GHz band was previously allocated exclusively to radio altimeters and transponder systems associated with altimetry. The altimeter functions to actively and continuously provide height measurements of an aircraft above the surface of the Earth. The highest degree of accuracy is expected in the approach, landing, and climb phases of flight. This accuracy must be maintained through all types of ground reflectivity. The height measured by an altimeter has a variety of uses in safety critical systems. The height functions as an input The Terrain Awareness Warning System, which gives the pilot a  ''Pull Up'' warning at a predetermined unsafe altitude and descent rate. The height from altimeters also functions as input for Collision Avoidance, Weather, Navigation, and Autopilot systems. Radio Altimeters are expected to operate in these functions through the lifetime of the Aircraft they are installed on, which results in Altimeters used in excess of 30 years.
+The 4.2-4.4 GHz band was previously allocated exclusively to radio altimeters and transponder systems associated with altimetry. The altimeter functions to actively and continuously provide height measurements of an aircraft above the surface of the Earth~\cite{noauthor_operational_2014}. The highest degree of accuracy is expected in the approach, landing, and climb phases of flight. This accuracy must be maintained through all types of ground reflectivity. The height measured by an altimeter has a variety of uses in safety critical systems. The height functions as an input The Terrain Awareness Warning System, which gives the pilot a  ''Pull Up'' warning at a predetermined unsafe altitude and descent rate. The height from altimeters also functions as input for Collision Avoidance, Weather, Navigation, and Autopilot systems. Radio Altimeters are expected to operate in these functions through the lifetime of the Aircraft they are installed on, which results in Altimeters used in excess of 30 years.
 
 \subsection{Calculating the Height From a Time Delay}
-There are two primary types of altimeters in use today. The first are Frequency Modulated Carrier Wave (FMCW) Altimeters. FMCW altimeters use a transmitter and receiver with separate antennas. The signal from the transmit antenna travels to the ground, is reflected, and returns to the aircraft. Due to the constant propagation speed, the return time of the signal is proportional to the height of the aircraft above the surface. 
+There are two primary types of altimeters in use today. The first are Frequency Modulated Carrier Wave (FMCW) Altimeters~\cite{noauthor_operational_2014}. FMCW altimeters use a transmitter and receiver with separate antennas. The signal from the transmit antenna travels to the ground, is reflected, and returns to the aircraft. Due to the constant propagation speed, the return time of the signal is proportional to the height of the aircraft above the surface. 
+
+
 \begin{figure}
  \centering
  \includegraphics[scale=0.5]{FMCW_Example.PNG}
- \caption{Figure from ITU-R M.2059-0}
+ \caption{FMCW Waveform from ITU-R M.2059-0 ~\cite{noauthor_operational_2014}}
  \label{fig:FMCW}
 \end{figure}
-
-The signal travel time is based on the return of a signal of the same frequency as the transmit signal. One method for calculating the travel time of a signal involves taking the difference between the frequency of the return signal at the current time and the frequency of the transmit signal at the current time, $\Delta f$. As shown in Figure~\ref{fig:FMCW}, given a constant waveform, the return time of a signal is:
+The signal travel time is based on the return of a signal of the same frequency as the transmit signal~\cite{noauthor_operational_2014}. One method for calculating the travel time of a signal involves taking the difference between the frequency of the return signal at the current time and the frequency of the transmit signal at the current time, $\Delta f$. As shown in Figure~\ref{fig:FMCW}, given a constant waveform, the return time of a signal is:
 
 $$\Delta t = \frac{\Delta f}{df/dt}$$
 
@@ -182,8 +186,6 @@ While not relying on a frequency modulated waveform, pulsed radar altimeters use
 \subsection{Attenuation of the Altimeter Signal in Free Space}
 A signal traveling from Altimeter Transmit and back to receive passes through multiple different sources of gain and attenuation~\cite{noauthor_minimum_1974}. There is attenuation from cable losses, gain from the TX antenna, free space path loss as the signal travels toward the ground, loss from the scattering of the signal by the ground, path loss of the return signal, a gain from the receive antenna, and finally the attenuation from return cable losses. The combination of each of these gains and losses comprises the external loop-loss $L$ for a signal leaving an aircraft. DO-155 defines the loop loss as the ratio of the power received by the RX antenna, $P_R$ to the power sent by the transmit antenna, $P_T$.
 $$ L = \frac{P_R}{P_T}$$
-The DO-155 standards specify loop loss for different heights, standardized antennas,  ground scattering environments, and standardized cable attenuations, and expands the formula shown here to derive these.
-
- Like the time delay, any Altimeter lab setup has to simulate the DO-155 attenuation for various heights to be realistic. 
+The DO-155 standards specify loop loss for different heights, standardized antennas,  ground scattering environments, and standardized cable attenuations, and expands the formula shown here to derive these~\cite{noauthor_minimum_1974}. Like the time delay, any Altimeter lab setup has to simulate the DO-155 attenuation for various heights to be realistic. 
 \subsection{Conclusions}
 Radio Altimeters are a safety critical system in any aircraft, the output of which is used by other important airborne systems. Altimeters use the time it takes a signal to travel to the ground and back to calculate the height of an aircraft off the ground, and must be able to pick up a return signal which has been attenuated significantly depending on the height. To test radio altimeters in a lab setting, both the time delay and attenuation experienced by a real signal must be simulated. 

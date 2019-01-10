@@ -16,17 +16,58 @@
 
 \chapter{METHODS}
 \section{Basic Altimeter Test Bed Setup}
+In addition to laying out performance standards for radar altimeters, DO-155 standards ~\cite{noauthor_minimum_1974} also specify a basic test setup for verifying an altimeter is functioning properly. The standards also elaborated on the necessary characteristics of the altitude simulator. 
+
+The simulator would need to ''consist of variable and fixed RF attenuators''~\cite{noauthor_minimum_1974}  to simulate the loop loss an altimeter experiences aboard an aircraft (see section 1.6.3). The simulator would also need a length of ''coaxial cables or other suitable delays''~\cite{noauthor_minimum_1974}  to simulate the physical time delay experienced by an altimeter signal between the transmitter and receiver (see section 1.6.2). The attenuated and delayed RF energy from the transmitter would then need to be fed back into the receiver. 
+\begin{figure}[ht]
+\centering
+\includegraphics[scale=0.5]{DO-155_Test_Setup.PNG}
+\caption[]{Basic Altimeter Test Setup from DO-155~\cite{noauthor_minimum_1974}}
+
+\label{fig:Basic Testbed}
+
+\end{figure}
+Additionally, the standards specified that any test equipment must account for cross coupling between transmitting and receiving antennas. DO-155 emphasized that the simulator achieve the desired altitude within 1\% and the correct attenuation within 2.5dB~\cite{noauthor_minimum_1974}.
+
+\section{Modified Altimeter Test Setup} 
+A modified version of the Altimeter test setup specified by DO-155 was implemented in our lab. The modifications were designed to inject interference into the line after the altimeter signal had passed through the altitude simulator. 
+\subsection{Reading the Altimeter Output}
+The altimeter outputs height data on an ARINC 429 cable setup. Our test setup uses a Ballard 429 to read the height data, as well as time stamps and any warnings associated with each data point. Ballard CoPilot Software provides a display which allows the real time monitoring of altimeter output as well as the easy export of test data to Microsoft Excel documents for post processing. 
+\subsection{Implementing the Altitude Simulator}
+\subsubsection{Time Delay}
+For these tests, spools of fiber optic cables created a time delay. The RF output from the altimeter transmitter was fed by coax connection to the fiber optic transceiver, which could either pass the signal to a single fiber optic spool or a series of cascaded spools to achieve a desired height. This setup contained optical spools of 500, 1000, 2000, and 4500 feet, each of which could be used individually or in conjunction with any or all of the other spools to implement a delay.
+
+ The optical transceiver and cascaded spools also contribute an attenuation to the loop loss which varies based on the number of spools cascaded. A single spool setup has an attenuation verified experimentally to be 29dB, with an additional 2dB loss added for each additional cascaded spool.
+
+Later tests would modify this delay setup to test an altimeter in takeoff and landing scenarios. The much lower height in these scenarios meant that a spool of coax could be used tor the delay instead of fiber optic cables. Two coax spools provided a height of 40 ft and 100 ft for testing these scenarios, with a 6dB and 36dB attenuation contributed to the loop loss respectively.  
+
+\subsubsection{Achieving Standard Loop Losses}
 
 
 
-%\begin{figure}[ht]
-%\centering
-%\includegraphics[scale=0.75]{TAMUthesis_CMD_windows.png}
-%\caption[The command line compiler in Windows.]{The command line compiler in Windows. It is not suggested that you compile using this method. See compilation instructions in the README.}
-%
-%\label{fig:CMD_1}
-%
-%\end{figure}
+\subsection{Generating Interference Signals}
+
+\section{Python Test Software}
+
+
+
+
+\subsection{Test Main Loop}
+\subsection{Post - Processing}
+\subsubsection{Parsing The Copilot Log}
+\subsubsection{Mapping Interference Signals to Copilot Data}
+\subsubsection{Plotting the Data}
+
+\section{Setup for WAIC plus Altimeter Interference}
+
+\subsection{Calibrating the VCOs}
+
+\section{Setup for Testing Wider Bandwidth Interference}
+
+\subsection{Handling Multiple Vector Signal Generators}
+
+%\section{S}
+
 %
 %Figure (and table) titles should be consistent through the document. All captions should be placed either above or below the object it describes. This is done by placing the \textit{caption} in the correct place. While continued figures are allowed by the Thesis Manual, it is not suggested that any continued figures be included in a \LaTeX\ document. The figure below is from Linux Mint, showing a portion of a desktop.
 %
