@@ -16,9 +16,9 @@
 
 \chapter{METHODS}
 \section{Basic Altimeter Test Bed Setup}
-In addition to laying out performance standards for radar altimeters, DO-155 standards ~\cite{noauthor_minimum_1974} also specify a basic test setup for verifying an altimeter is functioning properly. The standards also elaborated on the necessary characteristics of the altitude simulator. 
+In addition to laying out performance standards for radar altimeters, the DO-155 standards~\cite{noauthor_minimum_1974} also specify a basic test setup for verifying an altimeter is functioning properly. The diagram of this test setup is shown in Figure~\ref{fig:Basic Testbed}. The standards also elaborated on the necessary characteristics of the most critical part of the testbed, the altitude simulator. 
 
-The simulator would need to ''consist of variable and fixed RF attenuators''~\cite{noauthor_minimum_1974}  to simulate the loop loss an altimeter experiences aboard an aircraft (see section 1.6.3). The simulator would also need a length of ''coaxial cables or other suitable delays''~\cite{noauthor_minimum_1974}  to simulate the physical time delay experienced by an altimeter signal between the transmitter and receiver (see section 1.6.2). The attenuated and delayed RF energy from the transmitter would then need to be fed back into the receiver. 
+The altitude simulator would need to ''consist of variable and fixed RF attenuators''~\cite{noauthor_minimum_1974}  to simulate the loop loss an altimeter experiences aboard an aircraft (see section 1.6.3). The altitude simulator would also need a length of ''coaxial cables or other suitable delays''~\cite{noauthor_minimum_1974}  to simulate the physical time delay experienced by an altimeter signal between the transmitter and receiver (see section 1.6.2). The attenuated and delayed RF energy from the transmitter would then need to be fed back into the receiver. 
 \begin{figure}[ht]
 \centering
 \includegraphics[scale=0.5]{DO-155_Test_Setup.PNG}
@@ -27,7 +27,7 @@ The simulator would need to ''consist of variable and fixed RF attenuators''~\ci
 \label{fig:Basic Testbed}
 
 \end{figure}
-Additionally, the standards specified that any test equipment must account for cross coupling between transmitting and receiving antennas. DO-155 emphasized that the simulator achieve the desired altitude within 1\% and the correct attenuation within 2.5dB~\cite{noauthor_minimum_1974}.
+Additionally, the standards specified that any test equipment must account for cross coupling between transmitting and receiving antennas. DO-155 emphasized that the altitude simulator should achieve the desired altitude within 1\% and the correct attenuation within 2.5dB~\cite{noauthor_minimum_1974}.
 
 \section{Modified Altimeter Test Setup} 
 A modified version of the Altimeter test setup specified by DO-155 was implemented in our lab. The modifications were designed to inject interference into the line after the altimeter signal had passed through the altitude simulator. 
@@ -39,19 +39,47 @@ For these tests, spools of fiber optic cables created a time delay. The RF outpu
 
  The optical transceiver and cascaded spools also contribute an attenuation to the loop loss which varies based on the number of spools cascaded. A single spool setup has an attenuation verified experimentally to be 29dB, with an additional 2dB loss added for each additional cascaded spool.
 
-Later tests would modify this delay setup to test an altimeter in takeoff and landing scenarios. The much lower height in these scenarios meant that a spool of coax could be used tor the delay instead of fiber optic cables. Two coax spools provided a height of 40 ft and 100 ft for testing these scenarios, with a 6dB and 36dB attenuation contributed to the loop loss respectively.  
+Later tests would modify this delay setup to test an altimeter in takeoff and landing scenarios. The much lower height in these scenarios meant that a spool of coax could be used tor the delay instead of fiber optic cables. Two coax spools provided a height of 40 ft and 95 ft for testing these scenarios, with a 6dB and 36dB attenuation contributed to the loop loss respectively.  
 
 \subsubsection{Achieving Standard Loop Losses}
+DO-155 specifies loop loss for various heights and antenna types. For these tests, the loop loss used for each height is listed in Table~\ref{tab:loop loss} To achieve the Loop Losses specified by DO-155 standards for each height, the attenuation inherent in the delay method used for each height must be taken into account. Once the attenuation from the delay line is subtracted from the loop loss, 10, 20 and 30dB Pasternack fixed attenuators are inserted into the setup to get within 10dB of the desired loop loss. These are located within the setup in part to protect the fiber optic transceiver from damage.  Finally, a step attenuator capable of 1 to 11 dB is used to achieve the desired loop loss with a 1 dB precision. 
 
-
+\begin{table}[]
+\centering
+\begin{tabular}{|c|c|}
+\hline
+\textbf{Height} & \textbf{Loop Loss} \\ \hline
+40ft            & 76 dB              \\ \hline
+95ft            & 84 dB              \\ \hline
+500ft           & 100 dB             \\ \hline
+1500ft          & 109 dB             \\ \hline
+3000ft          & 116 dB             \\ \hline
+5000ft          & 120 dB             \\ \hline
+8000ft          & 124 dB             \\ \hline
+\end{tabular}
+\caption{DO-155 Loop Losses}
+\label{tab:loop loss}
+\end{table}
 
 \subsection{Generating Interference Signals}
+A Rhode and Schwarz SMU200A Vector Signal Generator (VSG) is used to generate simulated WAIC signals of varying modulation types, bandwidths and power levels. The VSG has a SCPI interface which allows a script running on the control computer to send commands for different interference signals. 
 
 \section{Python Test Software}
+Python code written by the author is used to piece together the various parts of this setup into a complete test bench. Different Python scripts are used to handle different functions necessary to the test bench. The primary functions are:
+
+\begin{itemize}
+\item Creating a SQLite database to transfer data between Python Scripts
+\item An object oriented interface for controlling instruments via SCPI
+\item Synchronizing the timing of instrument commands with controller clock
+\item Running through a loop which generates different interference signals
+\item Reading CoPilot software export file into the database
+\item Mapping time stamped height measurements to time stamped interference signals
+\item Plotting the resulting height error and statistics 
+\item Helping to analyze the results
+\end{itemize}
 
 
-
-
+\subsection{Programming the SCPI Interface}
 \subsection{Test Main Loop}
 \subsection{Post - Processing}
 \subsubsection{Parsing The Copilot Log}
