@@ -16,9 +16,7 @@
 
 \chapter{METHODS} 
 \section{Basic Altimeter Test Bed Setup} \label{sec:Basic}
-In addition to laying out performance standards for radar altimeters, the DO-155 standards~\cite{noauthor_minimum_1974} also specify a basic test setup for verifying an altimeter is functioning properly. Figure~\ref{fig:Basic Testbed} shows the diagram of this test setup. The standards also elaborated on the necessary characteristics of the most critical part of the testbed, the altitude simulator. 
-
-The altitude simulator needed to ''consist of variable and fixed RF attenuators''~\cite{noauthor_minimum_1974}  to simulate the loop loss an altimeter experiences aboard an aircraft (see section 1.6.3). The altitude simulator also needed a length of ''coaxial cables or other suitable delays''~\cite{noauthor_minimum_1974}  to simulate the physical time delay experienced by an altimeter signal between the transmitter and receiver (see section 1.6.2). To complete the test setup, the altitude simulator directed the attenuated and delayed RF energy from the transmitter fed back into the receiver. 
+In addition to laying out performance standards for radar altimeters, the DO-155 standards~\cite{noauthor_minimum_1974} also specify a basic test setup for verifying an altimeter is functioning properly. Figure~\ref{fig:Basic Testbed} shows the diagram of this test setup, which connects the RF terminals of the altimeter to an \textit{altitude simulator} and connects a separate device to read altitude data.  
 \begin{figure}[ht]
 \centering
 \includegraphics[scale=0.5]{DO-155_Test_Setup.PNG}
@@ -27,6 +25,9 @@ The altitude simulator needed to ''consist of variable and fixed RF attenuators'
 \label{fig:Basic Testbed}
 
 \end{figure}
+
+The standards elaborated on the necessary characteristics of the most critical part of the testbed, the altitude simulator. The altitude simulator needed to ''consist of variable and fixed RF attenuators''~\cite{noauthor_minimum_1974}  to simulate the loop loss an altimeter experiences aboard an aircraft (see section 1.6.3). The altitude simulator also needed a length of ''coaxial cables or other suitable delays''~\cite{noauthor_minimum_1974}  to simulate the physical time delay experienced by an altimeter signal between the transmitter and receiver (see section 1.6.2). To complete the test setup, the altitude simulator directed the attenuated and delayed RF energy from the transmitter fed back into the receiver. 
+
 
 Additionally, the standards specified that any test equipment must account for cross coupling between transmitting and receiving antennas. DO-155 emphasized that the altitude simulator should achieve the desired altitude within 1\% and the correct attenuation within 2.5dB~\cite{noauthor_minimum_1974}.
 
@@ -42,17 +43,31 @@ AVSI designed a modified version of the altimeter test setup specified by DO-155
 
 \end{figure}
 \subsection{Reading the Altimeter Output}\label{sub:reading_out}
-The altimeter outputs labeled height data on a standardized ARINC 429 cable configuration. The modified setup uses a Ballard ARINC device to convert the data from ARINC 429 to USB serial format, providing each data point with a time stamp. On the test laptop, Ballard CoPilot software reads the serial data and provides a display which allows the real time monitoring of all altimeter output and labels. The labels are critical because some data points may be labeled NCD, or No Computed Data, when conditions are insufficient for a reliable height measurement. CoPilot software also allows for the easy export of test data to Microsoft Excel documents for post processing. 
+The altimeter outputs labeled height data on a standardized ARINC 429 cable configuration. The modified setup uses a Ballard ARINC device to convert the data from ARINC 429 to USB serial format, providing each data point with a time stamp. On the test laptop, Ballard CoPilot software reads the serial data and provides a display which allows the real time monitoring of all altimeter output and labels. 
+
+The labels are critical because some data points may be labeled NCD (No Computed Data) when conditions are insufficient for a reliable height measurement. CoPilot software also allows for the easy export of test data to Microsoft Excel documents for post processing. 
 \subsection{Implementing the Altitude Simulator}\label{sub:Implementing}
+
+\begin{figure}[ht]
+\centering
+\includegraphics[scale=0.5]{Altitude_Simulator.png}
+\caption[]{Internal Diagram of Altitude Simulator using optical delay line}
+
+\label{fig:Altitude_Simulator}
+
+\end{figure}
+
 \subsubsection{Time Delay}\label{subsub:delay}
-Different test altitudes required the use of different methods of delaying the RF energy output by the altimeters. For higher altitude tests, spools of fiber optic cables created a time delay. The RF output from the altimeter transmitter was fed by coax connection to the fiber optic transceiver, which could either pass the signal to a single fiber optic spool or a series of cascaded spools to achieve a desired height. This setup contained optical spools of 500, 1000, 2000, and 4500 feet, each of which could be used individually or in conjunction with any or all of the other spools to implement a delay.
+Different test altitudes require the use of different methods of delaying the RF energy output by the altimeters. For the initial tests at higher altitudes, spools of fiber optic cables create a time delay as shown in Figure~\ref{fig:Altitude_Simulator}. The RF output from the altimeter transmitter was fed by coax connection to the fiber optic transceiver, which could either pass the signal to a single fiber optic spool or a series of cascaded spools to achieve a desired height. This setup contained optical spools of 500, 1000, 2000, and 4500 feet, each of which could be used individually or in conjunction with any or all of the other spools to implement a delay.
 
  The optical transceiver and cascaded spools also contribute an attenuation to the loop loss which varies based on the number of spools cascaded. A single spool setup has an attenuation verified experimentally to be 29dB, with an additional 2dB loss added for each additional cascaded spool.
 
-Later tests would modify this delay setup to test an altimeter in takeoff and landing scenarios. The much lower height in these scenarios meant that a spool of coax could be used tor the delay instead of fiber optic cables. Two coax spools provided a height of 40 ft and 95 ft for testing these scenarios, with a 6dB and 36dB attenuation contributed to the loop loss respectively.  
+Later tests modified this delay setup to test an altimeter in takeoff and landing scenarios. The much lower height in these scenarios made spools of coax sufficient tor the delay instead of fiber optic cables. Two coax spools provided a height of 40 ft and 95 ft for testing these scenarios, with a 6dB and 36dB attenuation contributed to the loop loss respectively.  
 
 \subsubsection{Achieving Standard Loop Losses}\label{subsub:loss}
-DO-155 specifies loop loss for various heights and antenna types. For these tests, the loop loss used for each height is listed in Table~\ref{tab:loop loss} To achieve the Loop Losses specified by DO-155 standards for each height, the attenuation inherent in the delay method used for each height must be taken into account. Once the attenuation from the delay line is subtracted from the loop loss, 10, 20 and 30dB Pasternack fixed attenuators are inserted into the setup to get within 10dB of the desired loop loss. These are located within the setup in part to protect the fiber optic transceiver from damage.  Finally, a step attenuator capable of 1 to 11 dB is used to achieve the desired loop loss with a 1 dB precision. 
+DO-155 specifies loop loss for various heights and antenna types. Table~\ref{tab:loop loss} lists the loop loss used for each height in these tests. To achieve the Loop Losses specified by DO-155 standards for each height, the attenuation inherent in the delay method used for each height must be taken into account. 
+
+Once the attenuation from the delay line is subtracted from the loop loss, 10, 20 and 30dB Pasternack fixed attenuators inserted into the setup get within 10dB of the desired loop loss. The first 20dB attenuator is located ahead of the fiber optic transceiver to protect it from damage (see Figure~\ref{fig:Altitude_Simulator}.  Finally, a step attenuator capable of 1 to 11 dB is used to achieve the desired loop loss with a 1 dB precision. 
 
 \begin{table}[]
 \centering
@@ -81,12 +96,13 @@ A Rhode and Schwarz SMU200A Vector Signal Generator (VSG) is used to generate si
 \label{fig:MSK}
 
 \end{figure}
-Modulation formats were chosen by the AFE76 Project Management Committee (PMC). The PMC chose to subject the altimeters to an MSK waveform modulated onto a wave form, as well as OFDM waveforms of varying bandwidths. The PMC also chose to use dual versions of both these waveforms. Both waveforms used ''junk'' data to modulate the carrier, which consisted of randomly generated ones and zeros with equal probability of either, which have been shown to closely replicate the performance of an optimal communication system [need citation]~\cite{}
+
+The AFE76 Project Management Committee (PMC) chose the modulation formats to represent theoretical WAIC interference. The PMC chose to subject the altimeters to an MSK waveform, as well as OFDM waveforms of varying bandwidths and dual versions of both waveforms. Each waveform used ''junk'' data to modulate the carrier, which consisted of randomly generated ones and zeros with equal probability of either; this closely replicates the performance of an optimized communication system~\cite{unknown}
 \subsubsection{MSK Waveform}\label{subsub:MSK}
 MSK or Minimum-Shift Keying is a type of modulation format which can be considered as a form of Phase-Shift Keying (PSK) or as a special case of Frequency Shift Keying (FSK)~\cite{proakis_communication_2002}. The frequency separation of an MSK signal, $\Delta f$ is: $$ \Delta f = \frac{1}{2T}$$
 and thus it has a modulation index of 1/2. This is ''the minimum frequency separation for orthogonality of the two sinusoids''~\cite{proakis_communication_2002}. An MSK waveform is shown on the spectrum analyzer screen-cap in Figure~\ref{fig:MSK}.
 
-MSK modulation is available natively through the VSG software. Through the \textit{custom waveform} interface, the Rhode and Schwarz VSG provides a number of common modulation options for the user to choose from. This simplifies the waveform generation for this case, as every in-built functionality on the VSG has a SCPI command corresponding to it. 
+MSK modulation is available natively in the VSG software through the \textit{custom waveform} interface.  The Rhode and Schwarz VSG provides a number of common modulation options in this interface for the user to choose from. This simplifies the waveform generation for this case, as every in-built functionality on the VSG has a SCPI command corresponding to it. 
 
 
 \subsubsection{OFDM Waveform}\label{subsub:OFDM}
@@ -100,9 +116,9 @@ Orthogonal Frequency-Division Multiplexing or OFDM attempts to achieve an effici
 \label{fig:OFDM}
 
 \end{figure}
-One way to view the OFDM waveform is as a series of MSK waveforms spread out orthogonally along a desired bandwidth. From this perspective, MSK can be seen as the minimum bandwidth version of a system based on OFDM, and the altimeter can thus be subjected to wider and wider bandwidth systems to show the response to a greater number of WAIC devices on an aircraft. This aspect, as well as the similarity of an OFDM signal to LTE systems made it a very attractive option for testing the impact of WAIC. 
+One way to view the OFDM waveform is as a series of MSK waveforms spread out orthogonally along a desired bandwidth. From this perspective, MSK can be seen as the minimum bandwidth version of a system based on OFDM, and the altimeter can thus be subjected to wider and wider bandwidth systems to show the response to a greater number of WAIC devices on (or external to) an aircraft. This aspect, as well as the similarity of an OFDM signal to LTE systems made it a very attractive option for testing the impact of WAIC. 
 
-Generating OFDM signals with the VSG was a more involved process than generating MSK, because the functionality for creating OFDM was not available natively in the VSG software. Because of this, OFDM had to be generated through the VSG's \textit{Arbitrary Waveform Generator}. The arbitrary waveform generator enables the VSG to generate any waveform from IQ data stored in a file on the VSG. The SCPI command for generating an arbitrary waveform would need to include the file path for this IQ data.  
+Generating OFDM signals with the VSG was a more involved process than generating MSK, because the functionality for creating OFDM was not available natively in the VSG software. Because of this, OFDM had to be generated through the VSG's \textit{Arbitrary Waveform Generator}. The arbitrary waveform generator enables the VSG to generate any waveform from IQ data stored in a file on the VSG. The SCPI command for generating an arbitrary waveform must include the file path for this IQ data.  
 
 This enabled an OFDM waveform to be specified by a Matlab script which exports raw IQ data, which is then converted to a form readable by the VSG through proprietary Rhode and Schwarz software. The conversion software allowed the user to adjust the clock rate, thus adjusting the bandwidth of the signal used. The bandwidth could then be measured with a spectrum analyzer to verify the process has yielded the expected waveform. The bandwidth of the OFDM waveform was defined as being 6 dB down from the peak power. 
 
@@ -131,7 +147,9 @@ Python code written by the author pieces together the various parts of this setu
 \label{fig:SCPI}
 
 \end{figure}
-The software uses Standard Commands for Programmable Instruments or SCPI to control the vector signal generator. In this test bed, the SCPI instructions are processed through an object-oriented hierarchy shown in Figure~\ref{fig:SCPI}. The super-class, $SCPI$ interfaces directly with all lab equipment. The subclass, called \textit{RS\_Signal\_Generator} in this implementation, contains python functions associated with all instrument specific commands. The helper functions from $SCPI$ send and receive communication with the instrument. Finally, the main loop exists at the highest level, which times the calls of different instrument commands and creates a database to store them. 
+The software uses Standard Commands for Programmable Instruments or SCPI to control the vector signal generator. In this test bed, the SCPI instructions are processed through an object-oriented hierarchy shown in Figure~\ref{fig:SCPI}. The super-class, $SCPI$ interfaces directly with all lab equipment. The subclass, called \textit{RS\_Signal\_Generator} in this implementation, contains python functions associated with all instrument specific commands. The helper functions from $SCPI$ send and receive communication with the instrument. Finally, the main loop exists at the highest level, which times the calls of different instrument commands and creates a database to store them. The idea behind this abstraction is to prevent the main loop from dealing with any raw SCPI command syntax-- this should only be handled by one of the instrument classes. 
+
+
 
 \subsection{Test Main Loop}\label{sub:mainloop}
 The highest level of this design is the test main loop. The test main loop creates the SQLite database which stores all important information for easy transfer between the different python scripts necessary for the test bed. This program also contains variables for various test parameters, which are stored in an SQLite database for easy reference and sometimes directly control the sequence of a test. Finally, this program loops through the sequence interference signals specified by the various test parameters, and sends the commands to the VSG to generate them. The commands sent to the VSG are time stamped as precisely as possible, and recorded in the \textit{Generated Signals} table in the database. 
@@ -140,9 +158,11 @@ The highest level of this design is the test main loop. The test main loop creat
 Certain test parameters are stored for reference or calculation but do not directly affect the sequence of interference signals to be generated. These include the altimeter make and model, the nominal height of the test setup, the loss experienced by interference signals traveling to the altimeter RX, and the loop loss used in the setup. Other parameters directly control the sequence of the test, including interference on and off times, power levels to be used, modulation formats to be tested, and RF carrier frequencies to be used. 
 
 \subsubsection{Nominal Height vs Correct Height}\label{subsub:nominal}
-\textit{Nominal height} is the term used to refer to the height of the test setup. For example, the smallest spool of fiber optic cable is 500ft long, so the test setup using only this spool in the altitude simulator has a \textit{nominal height} of 500ft.  However, the measured height in a particular setup will typically differ from the nominal height by a small amount.  This small offset varies between the different altimeters under test. The difference between measured height and the nominal height of the setup can be attributed in part to the extra cabling going to and from the altitude simulator, but primarily is a result of different calibration settings for each altimeter. 
+\textit{Nominal height} is the term used to refer to the approximate altitude of the test setup experienced by different altimeters. The best way to illustrate this is with an example.  The smallest spool of fiber optic cable may have a physical length of around 1500 feet, and altitude readings with no interfernce may vary from around 485 feet to around 515 feet.  Because a single height needs to be chosen to derive the Loop Loss, and the spool was expected to provide approximately 500ft of delay, the test setup using only this spool in the altitude simulator is said to have a \textit{nominal height} of 500ft.  
 
-The calibration procedure is an important part of installing an altimeter onto an aircraft. When an aircraft is on the ground, the TX and RX antennas used by the altimeter are naturally several feet off the ground, in line with the airframe. To compensate for the varying heights of airframes, avionics manufacturers developed a calibration procedure so that each altimeter could be programmed upon installation to output an altitude of 0ft when the plane is on the ground. Because these tests are only concerned with \textit{height error}, rather than the most precise height measurement possible in the setup, this calibration is not corrected for in test procedures. Instead, a variable called \textit{correct\_height} is calculated in post processing as the median altitude with no interference. Any height error attributable to interference is measured as a distortion from this correct height.
+The difference between measured height and the nominal height of the setup varies between the different altimeters, and is primarily a result of different calibration settings for each altimeter. The calibration procedure is an important part of installing an altimeter onto an aircraft. When an aircraft is on the ground, the TX and RX antennas used by the altimeter are naturally several feet off the ground, in line with the airframe. Additionally, there are standardized delays from the altimeter TX port to the TX antenna and from the RX antenna to the RX port. These are known as Aircraft Internal Delays (AIDs). To compensate for the varying heights of airframes, as well as the AID installation, avionics manufacturers developed a calibration procedure so that each altimeter could be programmed upon installation to output an altitude of 0ft when the plane is on the ground. 
+
+Because these tests are only concerned with \textit{height error}, rather than the most precise height measurement possible in the setup, this calibration is not corrected for in test procedures; \textit{nominal height} is only used to set the loop loss. Instead a variable called \textit{correct\_height} is calculated in post processing as the median altitude with no interference. Any height error attributable to interference is measured as a distortion from this correct height.
 
 \subsubsection{Sequence Control}\label{subsub:sequence}
 % This section also needs a plot to show the timed stepping up of interference signals. 
@@ -197,7 +217,7 @@ For the purposes of the timing problem, these attributes serve as a fingerprint,
 
 Using this method, different theories for potential causes of the hanging delays were investigated. The first potential problem was dropped or delayed packets. During the initial setup, instruments were connected to one another over the TAMU network. While this functioned at a high level, upon packets had an unnecessarily long mean travel time, and significant outliers existed during times of heavy traffic. These issues were solved by moving the VSG and controller laptop onto their own local network. 
 
- While the local network solved the biggest chunk of hanging delays, it did not eliminate them entirely. These were attributed to a slowdown in the processor handling the sequence of Python commands.These remaining delays would only occur at times of extremely heavy CPU usage (caused by a memory leak in the old Ballard driver), and were eliminated almost completely by rebooting the controller laptop more frequently. Later on, an upgrade to the Ballard driver reduced these even further. 
+ While the local network solved the biggest chunk of hanging delays, it did not eliminate them entirely. These were attributed to a slowdown in the processor handling the sequence of Python commands.These remaining delays would only occur at times of extremely heavy CPU usage (possibly caused by a memory leak in the old Ballard driver), and were eliminated almost completely by rebooting the controller laptop more frequently. Later on, an upgrade to the Ballard driver reduced these even further. 
  
  While the hanging delays were investigated, the VSG State table revealed another source of imprecision in timing commands. It was noticed that the VSG State would not change until nearly a second longer than the \textit{Interference Duration} or \textit{Signal off Duration} parameters specified. This drift occurred because the main loop used Pythons in built \textit{Sleep()} function to handle timing. The sleep function used the exact interference duration passed as a parameter. After the program 'woke up' the commands to set the next interference signal up would be called, thus introducing a small delay beyond the specified duration. 
  
@@ -216,25 +236,115 @@ Using the \textit{wait until} method to time commands offered important new flex
 The final problem encountered involved the synchronization of time stamps of data between the controller laptop and the Ballard ARINC device. The Ballard internal clock drifted from about half a second ahead of the controller laptop clock to about half a second behind. This led to data sets such which looked like Figure~\ref{fig:sync}, where distortion from the correct height would appear a split second before the interference signal was turned on. Additionally, due to averaging techniques used in the altimeter's signal processing, there would be several data points during which the altitude would recover from the distortion caused by any interference. 
 
 
-While this issue could not be fixed completely, several different approaches were taken to mitigate it. Firstly, the Ballard used in initial testing was an older unit, which meant it was more prone to clock errors. To address this, the clock was driven by an external IRIG signal, rather than the on board IRIG. A program called NMEA time generated the IRIG signal through the controller laptop's audio jack, which was then fed into the Ballard input.  These changes would not completely synchronize the Ballard, but it would limit the drift of one clock away from another throughout a test. 
+While this issue could not be fixed completely, several different approaches were taken to mitigate it. Firstly, the Ballard used in initial testing was an older unit, which meant it was more prone to clock errors. To address this, the clock was driven by an external IRIG-B timecode signal, rather than the on board IRIG~\cite{noauthor_overview_2017}. A program called NMEA time generated the IRIG signal through the controller laptop's audio jack, which was then fed into the Ballard input.  These changes would not completely synchronize the Ballard, but it would limit the drift of one clock away from another throughout a test. 
 
 
 Later on, when a new Ballard was purchased for this project, the external IRIG signal was no longer needed, as the updated Ballard driver provided adequate synchronization over USB. Another technique used to prevent any loss of synchronization was to periodically power cycle the Ballard to ensure that the clock is reset. Finally, to minimize the impact of any data points not captured in the RF ON interval by post processing, long interference durations were used to ensure that the impact of any missed points on the true average was minimized. 
 
 \subsection{VSG Class}
-The VSG Class allows the main loop to create an object corresponding to each VSG connected to the network in the lab setup. This object then has access to functions which perform every operation needed by the main loop. The VSG Class inherits functionality from \textit{SCPI.py} common to every SCPI programmable instrument. 
+The VSG Class allows the main loop to create an object corresponding to each VSG connected to the network in the lab setup. This object then has access to functions which perform every operation needed by the main loop. The VSG Class inherits functionality from \textit{SCPI.py} common to every SCPI programmable instrument. The VSG class provides functionality for controlling both the RF generator, as well as the VSG's two baseband generators. 
 
+The general purpose of each function in the VSG class is to construct the string for each SCPI command corresponding to that function, and send the command using the inherited SCPI \textit{send} function. For example, the following SCPI command sets Baseband A to MSK modulation:
+{\centering\textit{''SOUR1:BB:DM:FORM	MSK''}\par}
+''SOUR1'' corresponds to baseband generator A, where ''SOUR2'' would correspond to baseband generator B. Different SCPI commands have different parameters like this which the VSG class takes in as a normal Python variable and inserts into the string. 
 
+The VSG class provides several functions which perform this task for the RF Generator. RF ON and RF OFF commands are self explanatory, while the \textit{set\_carrier} function lets the user choose a carrier frequency as well as the RF power setting.
+
+Similarly, the VSG class offers functions which will set the custom modulation format of either baseband generator (for setting MSK), or for setting the arbitrary waveform generator in each baseband generator (for setting OFDM).This class also provides functions for enabling and disabling the baseband generators, which is necessary for switching between dual and single modulation formats. 
+
+Lastly, the VSG class will have functions for setting a dual MSK or dual OFDM waveform. These will make two calls to the single MSK or OFDM function within VSG, simply passing a different source parameter to specify a different baseband generator.  
 \subsection{SCPI Class}
+\textit{SCPI.py} contains the 'lowest' level of programming in the SCPI hierarchy shown in Figure~\ref{fig:SCPI}. The goal of this abstraction was to implement a small set of core functionality that would be needed for any instrument capable of running SCPI commands. The SCPI class handles the TCP connection, sends and receives all commands and queried data from the instrument, and contains a few other universal instrument commands. 
+
+The first task handled by SCPI is the initialization of the socket connection between the controller laptop and the instrument. The constructor takes in the IP address of the instrument and the port number, and uses the Python socket class to initialize the connection. When the experiment is over, the SCPI \textit{close} function which handles the proper termination of the socket connection. 
+
+Next, the SCPI class creates custom send and receive commands inherited by every instrument object. The send command handles the proper encoding of any SCPI command string before calling the native socket class \textit{send} function. The receive command decodes a received string from the instrument, and parses the string into the different array elements delimited by commas in SCPI syntax. The receive command is meant to be called within any subclass command which \textit{queries} the instrument for information, as the data types received will vary depending on the query. 
+
+Finally, there are a few other commands universal to almost every SCPI controlled device. The \textit{reset} command ensures the instrument begins each experiment from a clean state. The \textit{operation complete} query is called between commands to ensure that no commands are executed out of order. Last, the \textit{identify} query returns the instrument make and model information, which is useful when first setting up an instrument for automation. 
+
 \subsection{Post - Processing}
 After the test sequence is completed, a series of other Python scripts are used to post process the newly generated data. Time stamped altitudes must be exported from the Ballard CoPilot software into an Excel document, and a python script has to read the data from this log into the SQLite database. A second program uses the time stamps from both the logged altitude table and the generated signals table to create a full data set, where each altitude measurement is labeled with the type and magnitude of interference the altimeter was subjected to at that time. Finally, several Python scripts take this full dataset and use it to generate plots which aid in the interpreting of the results. 
 \subsubsection{Parsing The Copilot Log}
-\subsubsection{Mapping Interference Signals to Copilot Data}
-\subsubsection{Plotting the Data}
+The first post processing script parses the Ballard Copilot log into the SQLite database so that it can be used by other scripts. The CoPilot export is in an excel file formatted like Table~\ref{tab:Copilot}. This table is read by python using SQLite's built in \textit{read\_excel} function. Most of the data is then added to the SQLite database as is, but the \textit{Value} string is stripped of units and cast as a float so that the numerical value can be easily used by other scripts. 
 
+The most important columns are the \textit{Value}, \textit{Time}, and \textit{Activity} label. The Activity label reads 'SSM ERROR'  whenever the altimeter does not receive a strong enough signal to make a reliable altitude calculation. Points with this flag are called NCD or Non-Computed Data. 
+\begin{table}[]
+\centering
+\begin{tabular}{ccccccc}
+
+\hline
+Item \# & Ch\# & Lbl\# & Value    & Time    & Activity      & Name         \\ \hline
+0       & 0    & 165   & 509 feet & 26:45.4 & LO            & Radio Height \\
+1       & 0    & 165   & 509 feet & 26:45.5 & LO SSM ERROR & Radio Height \\ \hline
+\end{tabular}
+\caption{Example Copilot Export}
+\label{tab:Copilot}
+\end{table}
+\subsubsection{Mapping Interference Signals to Copilot Data}
+The next post processing script maps each of the Altitude data points from the copilot log (Table~\ref{tab:Copilot}), and maps them to the interference signal (Table~\ref{tab:Interference}) active at that time. The method for mapping them is simple: if the time stamp for the data point is greater than an interference signal's \textit{start time} and less than the same interference signal's \textit{end point}, the altitude data is labeled with the corresponding modulation format, RF Power, RF State, and Altimeter under test information from the interference signals table. This process is repeated until all data points have been mapped. 
+
+% Please add the following required packages to your document preamble:
+% \usepackage{booktabs}
+\begin{table}[]
+\centering
+\begin{tabular}{@{}ccccccclll@{}}
+
+\toprule
+ID & Timestamp  & Ch\# & Carrier& Altimeter & Height & Modulation  & Power& Status & RF \\ \midrule
+0  & 13:54:40.5 & 0    & 4300              & Alt A     & 506             & 80 MHz OFDM & 7               & LO     & ON       \\
+1  & 13:54:40.6 & 0    & 4300              & Alt A     & 506             & 80 MHz OFDM & 9               & LO     & OFF      \\ \bottomrule
+\end{tabular}
+\caption{Example Full Dataset Table}
+\label{tab:Full}
+\end{table}
+\subsubsection{Plotting the Data}
+This section will cover the plotting scripts in depth, or it will mention them briefly while they are covered in depth in the results section. 
+\subsection{Initial Test Plan}
+The test setup design described above gave a wide degree of flexibility to the type, magnitude, and timing of interference the altimeters could be subjected to. While some preliminary tests helped to develop and debug the test setup, these were not comprehensive enough to draw conclusions from. This section covers the development questions for and the execution of the first  comprehensive test regimen. 
+
+\subsubsection{Motivations}
+The initial testing regimen had a series of questions about the behavior of real altimeters in the presence of interference that needed to be answered: 
+
+\begin{itemize}
+\item At what power level will \textit{any} MSK or OFDM signal at 4.3 GHz `break' an altimeter?
+\item Does the 'breaking point' an altimeter depend on the bandwidth of the signal?
+\item Does adding separation between interference signals at the center influence the `breaking point'? 
+\item How does the positioning of a signal within the altimeter band affect the breaking point?
+\item The \textit{definition} of precisely what `breaking point' means in the context of these tests also needed development.  
+\end{itemize}
+
+A discussion of preliminary testing between the PMC and the author in the context of these driving motivations led to development of the methods discussed in earlier sections which culminated in the test procedure discussed here.  
+
+\subsubsection{Complete Diagram}
+While the diagram of the Modified Test Setup in Figure~\ref{fig:Modified} gives conceptual background to the tests, and diagram in Figure~\ref{fig:Altitude_Simulator} gives detailed insight into the operation and configuration of the altitude simulator, neither is detailed enough to provide the context necessary for a complete test description. Figure~\ref{fig:Initial} shows the full test setup used in detail. A full page version is provided in Appendix 1. 
+
+
+
+
+\begin{figure}[ht]
+\centering
+\includegraphics[scale=0.5]{Initial_Full_Setup.PNG}
+\caption[]{Full Test Bench Diagram for Initial Tests}
+
+\label{fig:Initial}
+
+\end{figure}
+
+
+This diagram shows the altitude simulator  embedded into the full test setup, as well as displaying the measured path attenuations with the step and fixed attenuation set to zero. The measured path attenuations are then used to determine a value for the fixed attenuator (10,20, or 30dB), and a value for the step attenuator (1-11dB) to precisely achieve the DO-155 specified loop loss between TX and RX. 
+
+. The switches are necessary as the DC power supply to each altimeter is different and one would easily get fried without them. Additionally, the switches 
+
+\subsubsection{Interference Signals Used}
 
 \section{Setup for Testing Wider Bandwidth Interference}
-This section covers how the Modified setup from Figure~\ref{fig:Modified} is again changed to allow for Wider Bandwidth OFDM signals, with the primary goal being to fill the entire 200 MHz altimeter band with simulated WAIC Interference. A secondary goal of this process is to test the effects of proposed Cellular networks in adjacent bands to the altimeter band while still maintaining simulated WAIC Interference. 
+Early testing clearly demonstrated the effects of interference bandwidth on the altimeter signal processing. Wider bandwidth OFDM signals caused the altimeter to break at a lower RF Carrier power than narrower bandwidth signals. This dependence required the demonstration of the effects of OFDM filling the entire 4200 to 4400 MHz band. (See Section~\ref{} (Results of initial testing)) However, the SMU 200A VSG used for initial testing could only support an 80 MHz OFDM signal 
+
+To rectify this, a new VSG was added to the modified altimeter test setup from Figure~\ref{fig:Modified}. The new VSG, a Rhode and Schwarz SMW 200A, also had bandwidth limitations which prevented it from filling the entire 200 MHz band with OFDM. As a workaround, the RF Outputs of both VSG's were coupled together, as shown in Figure~\ref{fig:Wideband}.
+
+a Rhode and Schwarz generator, so 
+
+ A secondary goal of this process is to test the effects of proposed Cellular networks in adjacent bands to the altimeter band while still maintaining simulated WAIC Interference. 
 
 \section{Setup for WAIC plus Altimeter Interference}
 This section covers another set of modifications to the setup from Figure~\ref{fig:Modified}, which are designed to simulate the interference from other altimeters. The test scenario of an aircraft approaching an airport (and thus other altimeters) was determined to be the most critical. A set of Voltage Controlled Oscillators (VCO's) were controlled by function generators with a waveform similar to that seen in Figure~\ref{fig:FMCW}.
