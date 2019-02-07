@@ -180,7 +180,7 @@ ID & Altimeter   & Start Time          & End Time            & Modulation &Carri
 1  & Alt A & 19:23:06 & 19:23:07 & MSK & 4300  MHz & -10  dBm & OFF      \\
 2  & Alt A & 19:23:07 & 19:23:08 & MSK & 4300   MHz & -10 dBm& ON       \\ \bottomrule
 \end{tabular}
-\caption{Example Interference Signals Table}
+\caption{Example Copilot Export}
 \label{tab:Interference}
 \end{table}
 
@@ -300,7 +300,7 @@ ID & Timestamp  & Ch\# & Carrier& Altimeter & Height & Modulation  & Power& Stat
 \subsubsection{Plotting the Data}
 This section will cover the plotting scripts in depth, or it will mention them briefly while they are covered in depth in the results section. 
 \subsection{Initial Test Plan}
-The test setup design described above gave a wide degree of flexibility to the type, magnitude, and timing of interference the altimeters could be subjected to. While some preliminary tests helped to develop and debug the test setup, these were not comprehensive enough to draw conclusions from. This section covers the development questions for and the execution of the first  comprehensive test regimen. 
+The test setup design described above gave a wide degree of flexibility to the type, magnitude, and timing of interference the altimeters could be subjected to. While some preliminary tests helped to develop and debug the test setup, these were not comprehensive enough to draw conclusions from. This covers the development questions of for and the execution of the first  comprehensive test regimen. Additionally, this section pieces together the components discussed earlier into a complete test diagram. 
 
 \subsubsection{Motivations}
 The initial testing regimen had a series of questions about the behavior of real altimeters in the presence of interference that needed to be answered: 
@@ -316,7 +316,7 @@ The initial testing regimen had a series of questions about the behavior of real
 A discussion of preliminary testing between the PMC and the author in the context of these driving motivations led to development of the methods discussed in earlier sections which culminated in the test procedure discussed here.  
 
 \subsubsection{Complete Diagram}
-While the diagram of the Modified Test Setup in Figure~\ref{fig:Modified} gives conceptual background to the tests, and diagram in Figure~\ref{fig:Altitude_Simulator} gives detailed insight into the operation and configuration of the altitude simulator, neither is detailed enough to provide the context necessary for a complete test description. Figure~\ref{fig:Initial} shows the full test setup used in detail. A full page version is provided in Appendix 1. 
+While the diagram of the Modified Test Setup in Figure~\ref{fig:Modified} gives conceptual background to the tests, and Figure~\ref{fig:Altitude_Simulator} gives detailed insight into the operation and configuration of the altitude simulator, neither is detailed enough to provide the context necessary for a complete test description. Figure~\ref{fig:Initial} shows the full test setup used in detail. A full page version is provided in Appendix 1. 
 
 
 
@@ -331,24 +331,67 @@ While the diagram of the Modified Test Setup in Figure~\ref{fig:Modified} gives 
 \end{figure}
 
 
-This diagram shows the altitude simulator  embedded into the full test setup, as well as displaying the measured path attenuations with the step and fixed attenuation set to zero. The measured path attenuations are then used to determine a value for the fixed attenuator (10,20, or 30dB), and a value for the step attenuator (1-11dB) to precisely achieve the DO-155 specified loop loss between TX and RX. 
+This diagram shows the altitude simulator  embedded into the full test setup, as well as measured path attenuations with the step and fixed attenuation set to zero. The measured path attenuations are then used to determine a value for the fixed attenuator (10,20, or 30dB), and a value for the step attenuator (1-11dB) to precisely achieve the DO-155 specified loop loss between TX and RX. Table~\ref{tab:loop loss} shows the loop loss values used for the different heights in this setup. 
 
-. The switches are necessary as the DC power supply to each altimeter is different and one would easily get fried without them. Additionally, the switches 
+For 500ft, which had the lowest attenuation, the loop loss from TX to RX was just within the dynamic range of a network analyzer, and so could be verified experimentally with a single S21 measurement. Higher altitudes could not be verified in this manner, but because the measurement closely matched calculations for 500ft, extrapolating to higher altitudes and loop losses was reasonable. 
+
+Several elements not shown in the conceptual diagram from Figure~\ref{fig:Modified} are added in Figure~\ref{fig:Initial}. The output of the VSG is divided between the interference injection point and a spectrum analyzer using a 6dB resistive coupler. The spectrum analyzer allows the test operator to view the interference signals actively being tested, and make adjustments to the setup when they don't match expectations. A directional coupler allows interference to be inserted into the altimeter line at the injection point without adding additional attenuation to the loop. 
+
+ Other elements pictured which weren't on the original diagram include coax switches and an ARINC 600 tray. The tray and switches are necessary in part because the DC power supply to each altimeter is different, and the tray acts as a protection from damage. Additionally, they allow for quick and easy alternating between the various altimeters under test, which is important in case any of this is ever actually flight tested. 
 
 \subsubsection{Interference Signals Used}
 
-\section{Setup for Testing Wider Bandwidth Interference}
-Early testing clearly demonstrated the effects of interference bandwidth on the altimeter signal processing. Wider bandwidth OFDM signals caused the altimeter to break at a lower RF Carrier power than narrower bandwidth signals. This dependence required the demonstration of the effects of OFDM filling the entire 4200 to 4400 MHz band. (See Section~\ref{} (Results of initial testing)) However, the SMU 200A VSG used for initial testing could only support an 80 MHz OFDM signal 
+\section{Expanding the Test Setup}
+The results from the initial test regimen led to new avenues of investigation. The dependence of results upon the bandwidth occupied by interference signals led to a need for wider bandwidth signals in the test bed. A desire to present the worst possible case for an aircraft led to testing at lower altitudes with interference from other altimeters. This simulated an approach or takeoff scenario at a busy airport. Finally, developments in 5G communications lobbying for access to adjacent bands led to an investigation of the tolerance of real altimeters to out of band interference. All of this required modifications to the initial testing concept from Figure~\ref{fig:Modified} to couple in an extra VSG and simulated altimeter signals at the interference injection point (Figure ~\ref{fig:Wideband}).
+\begin{figure}[ht]
+\centering
 
-To rectify this, a new VSG was added to the modified altimeter test setup from Figure~\ref{fig:Modified}. The new VSG, a Rhode and Schwarz SMW 200A, also had bandwidth limitations which prevented it from filling the entire 200 MHz band with OFDM. As a workaround, the RF Outputs of both VSG's were coupled together, as shown in Figure~\ref{fig:Wideband}.
+\includegraphics[scale=.5]{Wideband_Test_Setup.png}
+\caption[]{Expanded Test Bench For Wideband and Altimeter Interference.}
 
-a Rhode and Schwarz generator, so 
+\label{fig:Wideband}
 
- A secondary goal of this process is to test the effects of proposed Cellular networks in adjacent bands to the altimeter band while still maintaining simulated WAIC Interference. 
+\end{figure}
+\subsection{Adding The Second VSG}
+Early testing clearly demonstrated the effects of interference bandwidth on the altimeter signal processing. Wider bandwidth OFDM signals caused the altimeter to break at a lower RF Carrier power than narrower bandwidth signals. This dependence made it necessary to demonstrate the effects of OFDM filling the entire 4200 to 4400 MHz band. (See Section~\ref{} Results of initial testing) However, the Rhode and Schwarz SMU 200A VSG used for initial testing could only support an 100 MHz OFDM signal due to bandwidth limitations on the instrument.  
 
-\section{Setup for WAIC plus Altimeter Interference}
-This section covers another set of modifications to the setup from Figure~\ref{fig:Modified}, which are designed to simulate the interference from other altimeters. The test scenario of an aircraft approaching an airport (and thus other altimeters) was determined to be the most critical. A set of Voltage Controlled Oscillators (VCO's) were controlled by function generators with a waveform similar to that seen in Figure~\ref{fig:FMCW}.
+To supplement, this a Rhode and Schwarz SMW 200A was located in the senior design lab, and was appropriated (with permission of the owner) for the purpose of expanding the testing capability. This slightly newer VSG could support a 160 MHz OFDM signal, and when used in conjunction with the first VSG, the two filled the full spectrum. A secondary goal of this process is to test the effects of proposed Cellular networks in adjacent bands to the altimeter band while still maintaining simulated WAIC Interference. The dual VSG setup allowed for the one VSG to simulate in band interference while the other swept through out of band signals. 
 
-%	\subsection{Calibrating the VCOs}
+\subsubsection{Providing Isolation to the VSGs}
+\begin{figure}[ht]
+\centering
+\includegraphics[scale=1]{Isolators_Coupler.PNG}
+\caption[]{Circulator with Matched Load Added to Protect VSGs}
 
-%\subsection{Handling Multiple Vector Signal Generators}
+\label{fig:circulator}
+\end{figure}
+One problem with using the 6dB resistive power divider to couple the interference from the two VSG's together was the lack of isolation. The coupler provides no directionality, and signals which enter one port are split equally between the two other ports. This was hazardous since the high interference powers being tested could damage the other VSG if fed into the \textit{RF Out} port in reverse. 
+
+AVSI began looking into purchasing other couplers to provide higher isolation to the VSGs, when the Garmin engineer participating in the project offered to contribute two circulators which could function as isolators. By placing a matched load at port 3, most power entering from port 2 is absorbed into the load, with very little (ideally none) reflected back to port 2 or allowed to pass to port 1. Signals entering port 1 experience a small attenuation due to the properties of the circulator. Figure ~\ref{fig:circulator} shows how circulators in this configuration provide isolation to the VSGs when coupled together. 
+
+\subsubsection{Achieving Higher Power Interference}
+
+\begin{figure}[ht]
+\centering
+\includegraphics[scale=.4]{Coupler_Swap.png}
+\caption[]{Modifications for Higher Interference Power}
+
+\label{fig:coupler_swap}
+
+\end{figure}
+
+
+While the isolators protected the VSGs from damaging one another, they also added more attenuation into the line, meaning the altimeter RX recieved a lower RF Power than in earlier tests. This upper limit, caused by the Peak Envelope Power (PEP) limitation of the VSG's, prevented tests from locating the breaking point of an altimeter sometimes. 
+
+
+The setup was modified again to fix this. The 20dB attenuator placed on the output of the optical delay line in the altitude simulator was removed, and the 16dB directional coupler was replaced with a 20 dB directional coupler. Figure ~\ref{fig:coupler_swap} shows how the output of the altitude simulator fed into the 20dB loss port of the directional coupler to compensate for removing the fixed attenuator, and the interference injection point was moved to a port with (ideally) no attenuation. Additionally,this configuration was advantageous because the step attenuator and variable fixed attenuator settings for different altitudes did not have to be recalculated. 
+
+\subsection{Simulating Altimeter Interference}
+\subsubsection{Motivation}
+
+
+\subsection{Testing Lower Altitudes}
+
+\subsection{Dual-VSG In Band Testing}
+
+\subsection{Dual-VSG Out Of Band}

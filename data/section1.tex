@@ -35,7 +35,9 @@ With these diverse motivations spanning across the industry, various aerospace c
 Three AVSI projects directly relate to WAIC: AFE 56, AFE 73, and AFE 76. AFE 56 studied the feasibility of potential WAIC systems  and investigated the suitability of various bands to WAIC applications. AFE 73 took the analysis done by AFE 56 and used the work to advocate to regulators for spectrum allocation for WAIC. 
 
 \section{Project Goals}
-This work was funded through AVSI and managed under AFE 76. The goal of this project is to perform a band sharing study for WAIC with radio altimeters, and to develop a prototype for WAIC systems. The technical challenges in this project directly result from both the technical studies and the inherently political interactions with regulators performed under its predecessors. Because of this, a brief summary of the work done by the two preceding AVSI projects will be presented here, emphasizing the portions of each most relevant to this study. 
+This work was funded through AVSI and managed under AFE 76. Project members include but are not limited to Airbus, Boeing, Honeywell, NASA, Rockwell Collins, Thales, and Garmin. All members contributed funding, technical, and material support to this project. The goal of this project are to perform a band sharing study for WAIC with radio altimeters, to develop a prototype for WAIC systems, and develop the regulatory documentation necessary for the certification of WAIC systems. 
+
+The technical challenges in this project directly result from both the technical studies and the inherently political interactions with regulators performed under its predecessors. Because of this, a brief summary of the work done by the two preceding AVSI projects will be presented here, emphasizing the portions of each most relevant to this study. 
 
 \section{WAIC Feasibility Study}
 The WAIC Feasibility study was conducted through AFE 56, and the results of this study were published in~\cite{ferrell_feasibility_2007}. The report is summarized here for background with significant focus placed on the search for a suitable WAIC band. 
@@ -53,28 +55,50 @@ AFE 56 had three primary goals~\cite{ferrell_feasibility_2007}:
 Toward these ends, investigations were performed into the certification process, suitable spectrum bands, and security concerns related to the implementation of WAIC systems. 
 
 \subsection{Certification}
-Any device on an aircraft must go through a regulatory certification process, which functions as a way for regulatory bodies to declare the device airworthy~\cite{ferrell_feasibility_2007}. Both civilian and military aircraft are subjected to various certification processes~\cite{ferrell_feasibility_2007}. The AFE 56 working group surveyed the various standards imposed by the DoD, FAA, and ICAO (International Civil Aviation Organization), as well as international treaties governing the aviation industry. The committee took an in depth look at the flight clearance process in use at various agencies~\cite{ferrell_feasibility_2007}. 
+Any device on an aircraft must go through a regulatory certification process, which functions as a way for regulatory bodies to declare the aircraft airworthy~\cite{ferrell_feasibility_2007}. Both civilian and military aircraft are subjected to various certification processes~\cite{ferrell_feasibility_2007}. The AFE 56 working group surveyed the various standards imposed by the DoD, FAA, and ICAO (International Civil Aviation Organization), as well as international treaties governing the aviation industry. The committee took an in depth look at the flight clearance process in use at various agencies~\cite{ferrell_feasibility_2007}. 
 
 The AFE 56 working group then looked at the specific challenges brought to the forefront by wireless systems. The primary concerns for potential WAIC  systems involved the sharing of spectrum with other legal occupants of the band,  as well as intentional and unintentional interferers~\cite{ferrell_feasibility_2007}. It was determined that a certification process for WAIC systems would need to account for and provide mitigation strategies for each of these various potential interferers to pass certification. Information security would also need to be guaranteed for critical systems. These considerations would drive the band selection process for WAIC~\cite{ferrell_feasibility_2007}. 
 
 \subsection{The Search for a Suitable WAIC Band}
-Prior to beginning the search for a suitable band, members of the project management committee held discussions with the FCC to gain insight on the regulator's perspective on allocations for potential WAIC systems. %When asked for clarification on how to classify these wireless sensor networks, the FCC staff ''were equally at a loss'' to AVSI engineers on the specifics of classifying WAIC services. <-- Unnecessary 
-%^^^^^^^^^^^^^^ Extraneous and tracks too closely to original
-Firstly, FCC staff reccommended AVSI pursue an international spectrum allocation before focusing on domestic rule-making. Secondly, the FCC placed significant emphasis on the importance of  ''picking a winner'' as quickly as possible in the frequency selection process ~\cite{ferrell_feasibility_2007}. 
-
-This recommendation was made in light of experience with previous international radio projects. American industry previously coordinated a global effort to upgrade the Weather Fax system which was delayed by more than two years and ultimately only partially successful. The FCC ultimately pinned these issues on the failure of American industry to ''\textit{socialize} their specific solution'' with key international players in the international spectrum allocation process~\cite{ferrell_feasibility_2007}. The lessons from this failure would play as important of a role in the evaluating potential WAIC band as technical considerations. The band would need to be one which aerospace could get.    
+Prior to beginning the search for a suitable band, members of the project management committee held discussions with the FCC to gain insight on the regulator's perspective on allocations for potential WAIC systems. Firstly, FCC staff reccommended AVSI pursue an international spectrum allocation before focusing on domestic rule-making. Secondly, the FCC placed significant emphasis on the importance of  ''picking a winner'' as quickly as possible in the frequency selection process . This recommendation was made in light of experience with previous international radio projects, and drove AVSI to consider only bands already allocated to aviation interests~\cite{ferrell_feasibility_2007}.    
  
-Initially, the committee considered the Industrial, Scientific, and Medical, or ISM bands. ISM bands are subjected to limited regulations, and were quickly eliminated from consideration for WAIC devices~\cite{ferrell_feasibility_2007}. A wide variety of commercial devices already occupy this band, and these devices are allowed to radiate at relatively high powers. Because of the high operating powers, users are afforded no regulatory protection from hamful interference, a condition which would be unacceptable for the safety focused aerospace industry~\cite{ferrell_feasibility_2007}. For this reason the 915 MHz, 2.4 GHz, 5.8 GHz, 24 GHz, and 61 GHz bands were eliminated from consideration for WAIC devices~\cite{ferrell_feasibility_2007}. 
+Initially, the committee considered the Industrial, Scientific, and Medical, or ISM bands. ISM bands are subjected to limited regulations, and were quickly eliminated from consideration for WAIC devices. A wide variety of commercial devices already occupy this band, and these devices are allowed to radiate at relatively high powers. Because of the high operating powers, users are afforded no regulatory protection from hamful interference, a condition which would be unacceptable for the safety focused aerospace industry. For this reason the 915 MHz, 2.4 GHz, 5.8 GHz, 24 GHz, and 61 GHz bands were eliminated from consideration for WAIC devices~\cite{ferrell_feasibility_2007}. 
 
 
-To find a suitable alternative, the committee stepped through both the US and international tables of frequency allocations. The committee rated alternatives according to two goals. The first was electromagnetic compatibility with wireless sensor applications~\cite{ferrell_feasibility_2007}. The second goal was that a suitable band already be allocated or have potential to be allocated in a manner compatible with WAIC desired properties~\cite{ferrell_feasibility_2007}. 
+To find a suitable alternative, the committee stepped through both the US and international tables of frequency allocations. The committee rated alternatives according to two goals. The first was electromagnetic compatibility with wireless sensor applications. The second goal was that a suitable band already be allocated or have potential to be allocated in a manner compatible with WAIC desired properties~\cite{ferrell_feasibility_2007}. 
 
-A series of criteria were used to rate the suitability of potential alternatives. A band already primarily allocated to an aeronautical service was considered beneficial from the political perspective of spectrum allocations. Benign co-primary users were considered essential~\cite{ferrell_feasibility_2007}. The less sensitive other occupants are to the minimal level of interference from on-aircraft wireless systems, the better. Bands which possessed common allocations across international regions were also considered beneficial, to ease the process of getting approval for WAIC use of the band~\cite{ferrell_feasibility_2007}. 
+A series of criteria were used to rate the suitability of potential alternatives. A band already primarily allocated to an aeronautical service was considered beneficial from the political perspective of spectrum allocations. Benign co-primary users were considered essential. The less sensitive other occupants are to the minimal level of interference from on-aircraft wireless systems, the better. Bands which possessed common allocations across international regions were also considered beneficial, to ease the process of getting approval for WAIC use of the band~\cite{ferrell_feasibility_2007}. 
 
-It was considered critical that WAIC systems be sufficiently isolated from ISM and unlicensed allotments. The relatively uncontrolled emitters were considered a significant threat to on aircraft wireless~\cite{ferrell_feasibility_2007}. Isolation from terrestrial point to point systems was also considered critical. These systems introduce the possibility of impinging extremely high radiated power levels onto aircraft that pass through~\cite{ferrell_feasibility_2007}. Although this risk is limited to low altitudes, it constitutes a significant safety hazard that can be avoided by the choice of band~\cite{ferrell_feasibility_2007}. A final consideration for allocations is isolation from Satellite (Earth to Space) allocations. Up-link sites require significant RF power to maintain, and therefore consist of a safety hazard similar to point to point systems~\cite{ferrell_feasibility_2007}. 
+The committee consdered isolation from ISM and unlicensed allotments critical to a WAIC allocation. The relatively uncontrolled emitters in these bands constituded a significant threat to on aircraft wireless even in adjacent bands. Additionally, terrestrial point to point systems introduce the possibility of impinging extremely high radiated power levels onto aircraft that pass through their links, which made isolation from these systems desirable. Although this risk is limited to low altitudes, the committee considered it a significant safety hazard that could be avoided with the choice of band. A final consideration for allocations was isolation from Satellite (Earth to Space) allocations. Similar to the terrestrial point to point systems, up-link sites require significant RF power to maintain, and therefore created a similar safety hazard~\cite{ferrell_feasibility_2007}. 
 
 \subsection{Candidate Bands}
-Based on these criteria, the AFE 56 committee performed a review of major candidate bands for WAIC systems. The committee provided a synopsis of relevant characteristics of each candidate band and rated the band according to it's suitability. AVSI performed this process with a goal of helping future working groups to prioritize future efforts at reserving spectrum allocation. 
+Next, the AFE 56 committee performed a review of major candidate bands for WAIC systems. The committee provided a synopsis of relevant characteristics of each candidate band. AVSI performed this process with a goal of helping future working groups to prioritize future efforts at reserving spectrum allocation. Table~\ref{tab:Candidates} shows a list of bands researched by the committee, their allocation at the time of the project, and a letter rating showing their suitability according to the criteria listed above. 
+
+% Please add the following required packages to your document preamble:
+% \usepackage{booktabs}
+\begin{table}[]
+\centering
+\begin{tabular}{@{}clc@{}}
+\toprule
+Band              & Existing Allocation at Time of AFE56                    & Committee Rating \\ \midrule
+4.200 - 4.400 GHz & Exlcusively to Radio Altimeters                            & C                \\
+4.800 - 4.940 GHz & Federal FIXED and MOBILE Services                          & A                \\
+5.030 - 5.091 GHz & Microwave Landing System (MLS)                             & C                \\
+5.091 - 5.150 GHz & MLS "Expansion Band"                                       & B                \\
+5.150 - 5.250 GHz & Unused Radionavigation, Satellite Uplink Co-Primary        & B-               \\
+5.350 - 5.460 GHz & Weather, Airborne, and Terrestrial Military Radars         & C                \\
+8.750 - 8.850 GHz & Civilian Doppler and Fixed Military Radars                 & C                \\
+13.25 - 13.40 GHz & Civilian Doppler Radars                                    & B                \\
+15.40 - 15.43 GHz & Aeronautical Radionavigation, bordered by Satellite Uplink & C                \\
+15.63 - 15.70 GHz & Aeronautical Radionavigation, bordered by Satellite Uplink & C                \\
+36.00 - 37.00 GHz & Earth Exploration and Space Research Satellites            & B                \\
+66.00 - 71.00 GHz & Mostly Federal Secure Short Range Communication Links             & B                \\
+76.00 - 77.50 GHz & Beginning Use for Radar Sensors for Vehicles               & B                \\ \bottomrule
+\end{tabular}
+\caption{Major Candidate Bands Researched by AFE 56}
+\label{tab:Candidates}
+\end{table}
+
 
 % Temporarily removed list of candidate bands
 
@@ -116,45 +140,41 @@ Based on these criteria, the AFE 56 committee performed a review of major candid
 %\subsubsection{76.0 - 77.5 GHz}
  %AFE 56 found that htis band has isolation similar to the previous band, although it is beginning to find use for short range radar sensors for vehichles. The low power and narrow beamwidths of devices in these applications mitigated potential problems associated with band-sharing. The committee found the band worth more consideration~\cite{ferrell_feasibility_2007}. 
  
-%\subsubsection{Summary of Candidate Bands}
- %Need to get permission for this table or make my own figure summarizing results
- %\begin{figure}
- %\centering
- %\includegraphics[scale=1]{Candidate_Bands.PNG}
- %\caption{Figure from AFE56 final report}
- %\label{fig:Candidates}
- %\end{figure}
  
 \subsection{Channel Modeling and Security}
 Finally, the AFE56 committee surveyed two more obstacles to a finalized WAIC implementation. The committee looked at channel modeling for wireless sensor networks and  gave an overview of security concerns. 
 
-Any implementation of WSN's on aircraft has the potential to be critical to the safety of flight. Because of this, the committee stressed the importance of  developing a validated channel model for the band and air-frames in use~\cite{ferrell_feasibility_2007}. The channel models would allow for the incorporation of the physical propagation characteristics of the wireless signals in various aircraft and could be used to improve the reliability of real WAIC designs. Because of this, the committee provided an overview of channel modeling efforts in their report and made recommendations for an approach to channel modeling efforts that might follow a new WAIC allocation~\cite{ferrell_feasibility_2007}. 
+Any implementation of WSN's on aircraft has the potential to be critical to the safety of flight. Because of this, the committee stressed the importance of  developing a validated channel model for the band and air-frames in use. The channel models would allow for the incorporation of the physical propagation characteristics of the wireless signals in various aircraft and, once developed, would improve the reliability of real WAIC designs. Because of this, the committee provided an overview of channel modeling efforts in their report and made recommendations for an approach to channel modeling efforts that might follow a new WAIC allocation~\cite{ferrell_feasibility_2007}. 
 
-Lastly, the committee commissioned a follow up investigation which looked into the security concerns associated with WAIC systems. A report~\cite{tewfik_university_2009} was commissioned through the University of Minnesota, which aimed to analyze the various potential threats to wireless networks on aircraft. The threat vectors considered included physical layer attacks such as jamming, as well as higher layer attacks such as distributed denial of service and hacking risks. The report then looked at potential mitigation strategies for each of these threat vectors. The solutions listed were meant to be a comprehensive overview, but to acquire certification each device would have to provide a detailed overview of their implementation to the relevant certification authority~\cite{tewfik_university_2009}. 
+Lastly, the committee commissioned a follow up investigation which looked into the security concerns associated with WAIC systems. A report~\cite{tewfik_university_2009} was commissioned through the University of Minnesota, which aimed to analyze the various potential threats to wireless networks on aircraft. Several threat vectors and the mitigation strategies associated with them were considered. The solutions listed were meant to be a high level overview, with an emphasis on the demonstrating that mitigation strategies existed to show  the feasibility of WAIC. However, to acquire certification, each device would have to provide a detailed overview of their specific implementation of mitigation techniques to the relevant certification authority~\cite{tewfik_university_2009}. 
 
 \subsection{Summary and Conclusions}
 The AFE 56 project committee performed a feasibility study for wireless sensing network on aircraft. The committee first looked at the existing path to certification for instrumentation, and came to the conclusion that this path would work for WSN's as well, provided that the applicant for certification perform the necessary extra step of explaining to the FAA the added risks of the wireless device and how these risks were mitigated~\cite{ferrell_feasibility_2007}. The committee then performed an in depth survey of potential bands for WSN use, summarizing the desirable characteristics possessed by any candidate band. The committee provided an in depth overview of the pros and cons of each serious candidate for WAIC allocation, a brief summary of which has been included in this report for reference. Finally, the  committee looked at potential channel modeling techniques and security concerns associated with wireless systems on aircraft and outlined how these would need to be addressed for a real WAIC implementation~\cite{tewfik_university_2009}. 
 
 The committee came to the conclusion that although there were numerous hurdles in the way of fully realizing WAIC systems, WAIC systems were feasible and these challenges could be overcome with industry expenditure and effort. The tasks necessary for WAIC implementation were as follows: 
 \begin{itemize}
-\item Acquire spectrum for WAIC use
-\item Perform a band sharing study for WAIC and existing band occupants
+\item Obtain an allocation of for WAIC use
+\item Perform band sharing studies for WAIC and incumbent services
 \item Develop industry standards for channel modeling of air-frames
 \item Develop industry standards for addressing security concerns for wireless networks on aircraft
-\item Work with regulators to develop a streamlined certification process for wireless sensing networks once these standards are developed
+\item Work with regulators to develop a streamlined certification process for wireless sensing networks based on these standards are developed
 \end{itemize}
  
 With the feasibility study complete, the AVSI partners moved on to the task of acquiring spectrum for wireless networks on aircraft. 
  
 \section{Selecting a Suitable WAIC Band}
-In AFE 73, AVSI followed up on the work completed in AFE 56. The list of candidate bands was narrowed down to three at the World Radio Conference in 2015 (WRC-15), which then were the subject of a compatibility study. This process concluded with the final selection of a final WAIC band which was approved at WRC-15.
+The process for obtaining a spectrum allocation through the International Telecommunications Union - Radiocommunications (ITU-R) is nominally an 8 year long process. The first four involved developing frequency spectrum requirements, such as bandwidth and power required, and the justification for those parameters. These requirements are then vetted through various ITU-R subcommittees, and if successful, the process results in an agenda item at a subsequent World Radio Conference.  
+
+The following four years focus on sharing studies for the different bands under consideration. These studies must demonstrate compatibility with existing services in a band and the results must be verified by the ITU-R subcommittees. The documents produced during this process can be used to support a proposal for changes to a spectrum allocation. 
+
+AVSI followed up on the work done in AFE 56 under AFE 73, which initiated the ITU-R process by developing preliminary WAIC operating characteristics. This resulted in the World Radio Conference 2012 (WRC-12) issuing Resolution 423, which awarded WAIC an agenda item at WRC-15~\cite{Res_423}.
+
 \subsection{Assessment of Bands between 960 MHz and 15.7 GHz}
-At WRC-12, the ITU recommended in Resolution 423 that bands from 960 MHz to 15.7 GHz be considered for potential WAIC allocation~\cite{noauthor_consideration_2014}. The ITU eliminated bands below this range because the antenna size requirements were incompatible with WAIC implementation requirements. Bands above this range were to be considered only after all possibilities in this range were exhausted. 
+At WRC-12, the ITU recommended in Resolution 423 that bands from 960 MHz to 15.7 GHz be considered for potential WAIC allocation~\cite{noauthor_consideration_2014}. AVSI eliminated bands below this range because the antenna size requirements were incompatible with WAIC implementation requirements. Bands above this range were to be considered only after all possibilities in this range were exhausted. 
 
-The ITU took all bands with existing allocations to aeronautical mobile or aeronautical radio-navigation services into consideration. Bands in this range which fit this criteria were considered in an initial assessment. The purpose of the initial assessment was to eliminates bands with undue burden of a regulatory or technical nature. Technical burdens could involve an excessive number or difficulty of necessary band-sharing studies, while regulatory burdens could involve co-occupants of a band outside of the aerospace industry. After the initial assessment, the 2.7-2.9 GHz, 4.2-4.4 GHz, and 5.35 - 5.46 GHz bands were considered the three most promising candidates for a potential WAIC Allocation. This recommendation precipitated a theoretical compatibility study for these bands at WRC-15~\cite{noauthor_consideration_2014}.  
+AVSI took all bands with existing allocations to aeronautical mobile or aeronautical radio-navigation services into consideration. Bands in this range that fit this criteria were considered in an initial assessment. The purpose of the initial assessment was to eliminates bands with undue burden of a regulatory or technical nature. Technical burdens could involve an excessive number of necessary band-sharing studies or difficulty of meeting sharing requirements, while regulatory burdens could involve co-occupants of a band outside of the aerospace industry. 
 
-\subsection{Compatibility Study}
-The three bands selected in the initial assessment for more detailed analysis underwent a theoretical compatibility study. Existing ground based radar systems in the 2.8 and 5.4 GHz bands were found to be incompatible with the requirements for WAIC implementations, which left the 4.3 GHz band as the only remaining option. The ITU recommended this band for allocation for WAIC Systems~\cite{noauthor_consideration_2014}.
+After the initial assessment, the 2.7-2.9 GHz, 4.2-4.4 GHz, and 5.35 - 5.46 GHz bands were considered the three most promising candidates for a potential WAIC Allocation. This recommendation precipitated compatibility studies for these bands. Existing ground based radar systems in the 2.8 and 5.4 GHz bands were found to be incompatible with the requirements for WAIC implementations, which left the 4.3 GHz band as the only viable option. The results of this study were used to develop a proposal for a change in the 4.2-4.4 GHz band allocation, which was submitted at WRC-15~\cite{noauthor_consideration_2014}. 
 
 \subsection{Relevant WRC-15 Allocations}
 The 2015 World Radio Conference (WRC-15) made changes to the spectrum allocations in and around the radio altimeter (RA) band~\cite{noauthor_final_2015}. The 4.2-4.4 GHz band received an allocation for WAIC systems pending the experimental verification of compatibility. Additionally, new allocations for 5G systems in the 3.7 GHz (3600-4200 MHz) and 4.5 GHz (4400 - 4900 MHz) bands directly adjacent to the altimeter band would lead to experimental band-sharing studies. 
@@ -182,10 +202,15 @@ Once $\Delta t$ is calculated, it the height can be determined using the speed o
 
 $$H = \frac{c}{2\Delta t} $$
 
-While not relying on a frequency modulated waveform, pulsed radar altimeters use a series of discrete pulses to track the current height of the aircraft. The $\Delta t$ between two pulses is used to calculate the height in the same manner that an FMCW altimeter does. Thus, for any altimeter under test in a lab setting, the time delay of the signal between the Altimeter TX and RX must be simulated to provide an accurate representation of real conditions. 
+While not relying on a frequency modulated waveform, pulsed radar altimeters use a series of discrete pulses to track the current height of the aircraft. The $\Delta t$ between two pulses is used to calculate the height in the same manner that an FMCW altimeter does. 
+
+\subsection{Altimeter Signal Processing}
+This section ocntains a more in depth overview of altimeter signal processing. 
+
+
 \subsection{Attenuation of the Altimeter Signal in Free Space}
-A signal traveling from Altimeter Transmit and back to receive passes through multiple different sources of gain and attenuation~\cite{noauthor_minimum_1974}. There is attenuation from cable losses, gain from the TX antenna, free space path loss as the signal travels toward the ground, loss from the scattering of the signal by the ground, path loss of the return signal, a gain from the receive antenna, and finally the attenuation from return cable losses. The combination of each of these gains and losses comprises the external loop-loss $L$ for a signal leaving an aircraft. DO-155 defines the loop loss as the ratio of the power received by the RX antenna, $P_R$ to the power sent by the transmit antenna, $P_T$.
+A signal traveling from Altimeter transmit and back to receive passes through multiple different sources of gain and attenuation. There is attenuation from cable losses, gain from the TX antenna, free space path loss as the signal travels toward the ground, loss from the scattering of the signal by the ground, path loss of the return signal, a gain from the receive antenna, and finally the attenuation from return cable losses. The combination of each of these gains and losses comprises the external loop-loss $L$ for a signal leaving an aircraft. DO-155 operating standard~\cite{noauthor_minimum_1974} defines the loop loss as the ratio of the power received by the RX antenna, $P_R$ to the power sent by the transmit antenna, $P_T$.
 $$ L = \frac{P_R}{P_T}$$
-The DO-155 standards specify loop loss for different heights, standardized antennas,  ground scattering environments, and standardized cable attenuations, and expands the formula shown here to derive these~\cite{noauthor_minimum_1974}. Like the time delay, any Altimeter lab setup has to simulate the DO-155 attenuation for various heights to be realistic. 
+The DO-155 standard specifies loop loss for different heights, standardized antennas,  ground scattering environments, and standardized cable attenuations. The standard expands the formula shown here to incorporate these effects~\cite{noauthor_minimum_1974}.
 \subsection{Conclusions}
 Radio Altimeters are a safety critical system in any aircraft, the output of which is used by other important airborne systems. Altimeters use the time it takes a signal to travel to the ground and back to calculate the height of an aircraft off the ground, and must be able to pick up a return signal which has been attenuated significantly depending on the height. To test radio altimeters in a lab setting, both the time delay and attenuation experienced by a real signal must be simulated. 
