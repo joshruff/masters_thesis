@@ -389,11 +389,11 @@ The setup was modified again to fix this. The 20dB attenuator placed on the outp
 A Vector Network Analyzer S21 measurement was taken to verify the isolation provided by this configuration, as well as the attenuation between each VSG RF port and the altimeter RX. 
 
 \subsection{Simulating Altimeter Interference}
-The other major modification shown in Figure~\ref{fig:Wideband} was the addition of other altimeter signals to the interference already being tested. This addition intended to move the setup closer to the real-life worst case scenario for the interference an altimeter might be subjected to. A series of VCOs were calibrated and driven by function generators to generate the external altimeter signals, and programmable and fixed attenuators configured the distance of each altimeter signal from the receiver. Finally, all of these signals were coupled together with the VSG signals to send toward the interference injection point. 
+The other major modification shown in Figure~\ref{fig:Wideband} was the addition of other altimeter signals to the interference already being tested. This addition intended to move the setup closer to the real-life worst case scenario for the interference an altimeter might be subjected to. The test bed was configured to replicate an approach for landing scenario used in earlier compatability investigations. A series of VCOs were calibrated and driven by function generators to generate the external altimeter signals, and programmable and fixed attenuators configured the distance of each altimeter signal from the receiver. The VSG setup was configured to simulate the interference of the full 4.2 to 4.4 GHz band filled with WAIC signals from other aircraft, with a goal of determining what WAIC radiated power limitations were necessary to protect altimeters. Finally, all of these signals were coupled together with the VSG signals to send toward the interference injection point. 
 
 
 \subsubsection{Determining the Worst-Case Scenario Geometry}
-A worst-case scenario for the interference experienced by a victim altimeter from other aircraft was developed in the 2014 compatibility studies submitted to the ITU~\cite{noauthor_compatibility_2014}. The authors determined that the altimeter data was most important to the safety of a flight during the landing phase of operation. When aircraft line up for approach, they typically maintain a distance of around 5 km, which makes interfernce from WAIC signals or other altimeters aboard these neighbors negligible. On the other hand, aircraft taxiing or in holding adjacent a runway can achieve distances less than 300 m to the victim RA. 
+A worst-case scenario for the interference experienced by a victim altimeter from other aircraft was developed in the 2014 compatibility studies submitted to the ITU~\cite{noauthor_compatibility_2014}. The authors determined that the altimeter data was most important to the safety of a flight during the landing phase of operation. When aircraft line up for approach, they typically maintain a distance of around 5 km, which makes interfernce from WAIC signals or other altimeters aboard these neighbors negligible. On the other hand, aircraft taxiing or in holding adjacent to a runway can achieve distances less than 300 m to the victim RA. These aircraft could present a significant hazard to nearby altimeter receivers if WAIC power limitations are not developed in the context of this scenario. 
 
 \begin{figure}[ht]
 \centering
@@ -412,6 +412,22 @@ The path losses from simulated WAIC signals were calculated in the context of th
 
 %	While the aforementioned study focused primarily on WAIC interference, 
 In addition to specifying the path loss experienced by WAIC interferers located at a minimum slant range, this geometry also served to model the interference subjected to the victim RA by other altimeters. While most altimeters are designed to handle external altimeter signals, the \textit{combination} of these signals with WAIC interference leads to more stress on the victim receiver. This geometry models the locations of external altimeters along with WAIC signals to simulate this effect. Path losses assigned to each simulated altimeter are specified by the location in this geometry. 
+
+\begin{figure}[ht]
+\centering
+\includegraphics[scale=.6]{IPL_Plot.png}
+\caption[]{Plot of IPL values for 15 closest aircraft}
+
+\label{fig:IPL}
+
+\end{figure}
+
+The geometry was then modeled in a Matlab script by Airbus as a contribution to this project. The victim aircraft approached for  a landing on a 3 degree glide slope, and the interference path loss (IPL) from each aircraft on adjacent taxiways were modeled  in the script. Figure~\ref{fig:IPL} shows the results of this analysis. The IPL value for each of the 15 nearest aircraft are shown as a function of height, with a minimum occurring at approximately 200ft due to the angle of of reflected interference signals offering the shortest direct path into the victim RX antenna. From this, the committee drew the conclusion that the worst case altitude for this geometry occurred at approximately 200ft. 
+
+However, the lab test equipment had available test altitudes of only 40 and 500ft. After some deliberation, the 500ft altitude was chosen for the approach tests. By configuring the IPLs for the 200 ft case, and the altimeter loop loss for a 500ft case, the signal to interference ratio went from the real life worst case scenario to a so-called `super' worst case scenario: $$\frac{S(200ft)}{I(200ft)}\leq\frac{S(500ft)}{I(200ft)}$$
+This super worst case would be used to configure interfering altimeters for the landing simulation.
+
+
 \subsubsection{Simulating Individual Altimeter Signals}
 Several approaches were considered to simulate altimeter signals for the approach scenario. While software defined radios were appealing for the convenience the offered in modifying the test bed, they were in the end rejected in favor of a series of Voltage Controlled Oscillators (VCOs) controlled by function generators. The major advantage seen in the VCO approach was the simplicity of explaining the test scenario to regulators, as opposed to having to present another piece of software.
 
@@ -463,6 +479,8 @@ While the VCO's were designed to operate with a control voltage between 0 and 5V
  Initially, the protective circuit seemed even more urgent. The voltage setting on the function generator starts at 10V upon power up, but does not clearly mark whether this is a peak to peak voltage or $\pm10$ V. Compounding this ambiguity, when the output of the function generators was measured with an oscilloscope, the multiplier setting was set to 2X. This made it appear to be a $\pm10$ V signal on startup which would fry the VCO if the function generator was accidentally power cycled. This error was only noticed after the protective circuit was designed and built. 
 
 After some searching, a limiter or `clipper' circuit was decided on to protect the VCOs. Clippers consist of a resistor and one or two diodes. Various designs of clipper circuits and the trade-offs between them are discussed in~\cite{sedra_microelectronic_2015}. Based on this discussion, a double clipper was decided on because it would limit both the positive and negative extremes of the control waveform. The clipper circuit was modeled in a spice program so that different diode cutoff voltages could be tried. Simulations narrowed this down to a 6 (?)V Zener (?) diode. The diagram is shown in Figure~\ref{fig:Clipper}
+
+\subsubsection{Deriving VCO Attenuation}
 
 \subsection{Testing Lower Altitudes}
 A final major modification from the initial test regimen involved adding different altitude simulator configurations to the rotation to achieve lower altitudes. These were touched on briefly in Section~\ref{sub:Implementing}.
