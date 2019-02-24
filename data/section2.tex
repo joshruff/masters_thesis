@@ -20,7 +20,7 @@ In addition to laying out performance standards for radar altimeters, the DO-155
 \begin{figure}[ht]
 \centering
 \includegraphics[scale=0.5]{DO-155_Test_Setup.PNG}
-\caption[]{Basic Altimeter Test Setup from DO-155~\cite{noauthor_minimum_1974}}
+\caption{Basic Altimeter Test Setup from DO-155~\cite{noauthor_minimum_1974}}
 
 \label{fig:Basic Testbed}
 
@@ -31,13 +31,14 @@ The standards elaborated on the necessary characteristics of the most critical p
 
 Additionally, the standards specified that any test equipment must account for cross coupling between transmitting and receiving antennas. DO-155 emphasized that the altitude simulator should achieve the desired altitude within 1\% and the correct attenuation within 2.5dB~\cite{noauthor_minimum_1974}.
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Modified Altimeter Test Setup} \label{sec:Modified}
 AVSI designed a modified version of the altimeter test setup specified by DO-155, shown in Figure~\ref{fig:Modified}. The modifications allow the controlled injection of interference into the line after the altimeter signal passes  through the altitude simulator. 
 
 \begin{figure}[ht]
 \centering
 \includegraphics[scale=0.45]{Modified_Test_Setup.png}
-\caption[]{Modified Altimeter Test Setup}
+\caption{Modified Altimeter Test Setup}
 
 \label{fig:Modified}
 
@@ -51,7 +52,7 @@ The labels are critical because some data points may be labeled NCD (No Computed
 \begin{figure}[ht]
 \centering
 \includegraphics[scale=0.5]{Altitude_Simulator.png}
-\caption[]{Internal Diagram of Altitude Simulator using optical delay line}
+\caption{Internal Diagram of Altitude Simulator using optical delay line}
 
 \label{fig:Altitude_Simulator}
 
@@ -91,13 +92,13 @@ A Rhode and Schwarz SMU200A Vector Signal Generator (VSG) is used to generate si
 \begin{figure}[ht]
 \centering
 \includegraphics[scale=0.25]{MSK_wvfrm.png}
-\caption[]{MSK Waveform at 4.3 GHz Pictured on a Spectrum Analyzer}
+\caption{MSK Waveform at 4.3 GHz Pictured on a Spectrum Analyzer}
 
 \label{fig:MSK}
 
 \end{figure}
 
-The AFE76 Project Management Committee (PMC) chose the modulation formats to represent theoretical WAIC interference. The PMC chose to subject the altimeters to an MSK waveform, as well as OFDM waveforms of varying bandwidths and dual versions of both waveforms. Each waveform used ''junk'' data to modulate the carrier, which consisted of randomly generated ones and zeros with equal probability of either; this closely replicates the performance of an optimized communication system~\cite{unknown}
+The AFE76 Project Management Committee (PMC) chose the modulation formats to represent candidate WAIC interference. The PMC chose to subject the altimeters to an MSK waveform, as well as OFDM waveforms of varying bandwidths and dual versions of both waveforms. Each waveform used ''junk'' data to modulate the carrier, which consisted of randomly generated ones and zeros with equal probability of either; this closely replicates the performance of an optimized communication system~\cite{unknown}
 \subsubsection{MSK Waveform}\label{subsub:MSK}
 MSK or Minimum-Shift Keying is a type of modulation format which can be considered as a form of Phase-Shift Keying (PSK) or as a special case of Frequency Shift Keying (FSK)~\cite{proakis_communication_2002}. The frequency separation of an MSK signal, $\Delta f$ is: $$ \Delta f = \frac{1}{2T}$$
 and thus it has a modulation index of 1/2. This is ''the minimum frequency separation for orthogonality of the two sinusoids''~\cite{proakis_communication_2002}. An MSK waveform is shown on the spectrum analyzer screen-cap in Figure~\ref{fig:MSK}.
@@ -111,7 +112,7 @@ Orthogonal Frequency-Division Multiplexing or OFDM attempts to achieve an effici
 \begin{figure}[ht]
 \centering
 \includegraphics[scale=0.25]{ofdm_wvfrm.png}
-\caption[]{MSK Waveform at 4.3 GHz Pictured on a Spectrum Analyzer}
+\caption{40 MHz OFDM Waveform at 4.3 GHz Pictured on a Spectrum Analyzer}
 
 \label{fig:OFDM}
 
@@ -120,7 +121,7 @@ One way to view the OFDM waveform is as a series of MSK waveforms spread out ort
 
 Generating OFDM signals with the VSG was a more involved process than generating MSK, because the functionality for creating OFDM was not available natively in the VSG software. Because of this, OFDM had to be generated through the VSG's \textit{Arbitrary Waveform Generator}. The arbitrary waveform generator enables the VSG to generate any waveform from IQ data stored in a file on the VSG. The SCPI command for generating an arbitrary waveform must include the file path for this IQ data.  
 
-This enabled an OFDM waveform to be specified by a Matlab script which exports raw IQ data, which is then converted to a form readable by the VSG through proprietary Rhode and Schwarz software. The conversion software allowed the user to adjust the clock rate, thus adjusting the bandwidth of the signal used. The bandwidth could then be measured with a spectrum analyzer to verify the process has yielded the expected waveform. The bandwidth of the OFDM waveform was defined as being 6 dB down from the peak power. 
+This enabled an OFDM waveform to be specified by a Matlab script which exports raw IQ data, which is then converted to a form readable by the VSG through proprietary Rhode and Schwarz software. The conversion software allowed the user to adjust the clock rate, thus adjusting the bandwidth of the signal used. The bandwidth could then be measured with a spectrum analyzer to verify the process has yielded the expected waveform. The bandwidth of the OFDM waveform was defined as being 6 dB down from the peak envelope power. 
 
 
 \subsubsection{Dual Waveforms}\label{subsub:Dual}
@@ -128,8 +129,10 @@ The VSG allows full control of an RF generator along with two baseband generator
 
 Dual waveforms were considered an important option for testing due to a special characteristic of some altimeters at low altitudes. As the plane descends, the sweep rate of an altimeter increases to give more frequent readings at a more safety critical phase of flight. This is done by significantly reducing the $\Delta f$ covered by the altimeter FMCW. The effects of this offset were thus investigated to determine whether WAIC's impact could be minimized at critical altitudes by leaving the center of the band clear. 
 
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Python Test Software}\label{sec:Python}
-Python code written by the author pieces together the various parts of this setup into a complete test bench. Different Python scripts handle different functions necessary to the test bench. These include:
+Python code written by the author pieces together the various parts of this setup into an integrated test bench. Different Python scripts control the various functions of the test bench. These include:
 
 \begin{itemize}
 \item Creating a database to transfer data between different Python Scripts
@@ -142,12 +145,12 @@ Python code written by the author pieces together the various parts of this setu
 \begin{figure}[ht]
 \centering
 \includegraphics[scale=0.45]{SCPI_Class_Hierarchy.png}
-\caption[]{SCPI Class Hierarchy}
+\caption{SCPI Class Hierarchy}
 
 \label{fig:SCPI}
 
 \end{figure}
-The software uses Standard Commands for Programmable Instruments or SCPI to control the vector signal generator. In this test bed, the SCPI instructions are processed through an object-oriented hierarchy shown in Figure~\ref{fig:SCPI}. The super-class, $SCPI$ interfaces directly with all lab equipment. The subclass, called \textit{RS\_Signal\_Generator} in this implementation, contains python functions associated with all instrument specific commands. The helper functions from $SCPI$ send and receive communication with the instrument. Finally, the main loop exists at the highest level, which times the calls of different instrument commands and creates a database to store them. The idea behind this abstraction is to prevent the main loop from dealing with any raw SCPI command syntax-- this should only be handled by one of the instrument classes. 
+The software uses Standard Commands for Programmable Instruments or SCPI to control the vector signal generator. In this test bed, the SCPI instructions are processed through an object-oriented hierarchy shown in Figure~\ref{fig:SCPI}. The super-class, $SCPI$ interfaces directly with all lab equipment. The subclass, called \textit{RS\_Signal\_Generator} in this implementation, contains Python functions associated with all instrument specific commands. The helper functions from $SCPI$ send and receive communication with the instrument. Finally, the main loop exists at the highest level, which times the calls of different instrument commands and creates a database to store them. The idea behind this abstraction is to prevent the main loop from dealing with any raw SCPI command syntax-- this should only be handled by one of the instrument classes. 
 
 
 
@@ -158,20 +161,13 @@ The highest level of this design is the test main loop. The test main loop creat
 Certain test parameters are stored for reference or calculation but do not directly affect the sequence of interference signals to be generated. These include the altimeter make and model, the nominal height of the test setup, the loss experienced by interference signals traveling to the altimeter RX, and the loop loss used in the setup. Other parameters directly control the sequence of the test, including interference on and off times, power levels to be used, modulation formats to be tested, and RF carrier frequencies to be used. 
 
 \subsubsection{Nominal Height vs Correct Height}\label{subsub:nominal}
-\textit{Nominal height} is the term used to refer to the approximate altitude of the test setup experienced by different altimeters. The best way to illustrate this is with an example.  The smallest spool of fiber optic cable may have a physical length of around 1500 feet, and altitude readings with no interfernce may vary from around 485 feet to around 515 feet.  Because a single height needs to be chosen to derive the Loop Loss, and the spool was expected to provide approximately 500ft of delay, the test setup using only this spool in the altitude simulator is said to have a \textit{nominal height} of 500ft.  
+\textit{Nominal height} is the term used to refer to the approximate altitude determined by the experimental test setup. The difference between measured height and the nominal height of the setup varies between the different altimeters, and is primarily a result of different calibration settings for each altimeter. The calibration procedure is an important part of installing an altimeter onto an aircraft. When an aircraft is on the ground, the TX and RX antennas used by the altimeter are naturally several feet off the ground, in line with the airframe. Additionally, there are standardized delays from the altimeter TX port to the TX antenna and from the RX antenna to the RX port. These are known as Aircraft Internal Delays (AIDs). To compensate for the varying heights of airframes, as well as the AID installation, avionics manufacturers developed a calibration procedure so that each altimeter could be programmed upon installation to output an altitude of 0ft when the plane is on the ground. 
 
-The difference between measured height and the nominal height of the setup varies between the different altimeters, and is primarily a result of different calibration settings for each altimeter. The calibration procedure is an important part of installing an altimeter onto an aircraft. When an aircraft is on the ground, the TX and RX antennas used by the altimeter are naturally several feet off the ground, in line with the airframe. Additionally, there are standardized delays from the altimeter TX port to the TX antenna and from the RX antenna to the RX port. These are known as Aircraft Internal Delays (AIDs). To compensate for the varying heights of airframes, as well as the AID installation, avionics manufacturers developed a calibration procedure so that each altimeter could be programmed upon installation to output an altitude of 0ft when the plane is on the ground. 
-
-Because these tests are only concerned with \textit{height error}, rather than the most precise height measurement possible in the setup, this calibration is not corrected for in test procedures; \textit{nominal height} is only used to set the loop loss. Instead a variable called \textit{correct\_height} is calculated in post processing as the median altitude with no interference. Any height error attributable to interference is measured as a distortion from this correct height.
+Because these tests are only concerned with a differential \textit{height error}, rather than the accuracy of an absolute altitude measurement, \textit{nominal height} is only used to set the loop loss. Instead, the baseline measured height with no interference, or \textit{correct height}, is calculated in post processing as the median altitude over a several minute period when the VSG is in the OFF state before the test begins. Any height error attributable to interference is measured as a distortion from this correct height. Because of this, calibration of each altimeter to the setup is unnecessary. 
 
 \subsubsection{Sequence Control}\label{subsub:sequence}
 % This section also needs a plot to show the timed stepping up of interference signals. 
 The primary purpose of the test main loop is to subject an altimeter to various modulation formats, gradually stepping up the power of each until the altitude readings from an altimeter are distorted or broken. The main loop determines the type of modulation, power level, and timing, and as each signal is turned on or off by the VSG, stores the parameters for the signal in the \textit{Interference Signals} table for use in post processing, an example of which is shown in Table ~\ref{tab:Interference}. Each unique modulation format and power combination will have two entries in the \textit{Interference Signals} table, corresponding to the RF ON and RF OFF states of the VSG.  
-
-A variety of parameters controls the progression of different interference signals. The \textit{interference\_duration} and \textit{signal\_off\_duration}, define the length of time the altimeter will be subjected to a particular interference signal, as well as the length of time the altimeter will have to recover from any error caused by the previous signal. Throughout the main loop, each signal's Start Time and End time is calculated using interference duration variables. 
-
- A range of RF powers is specified using \textit{power\_min}, \textit{power\_max}, and \textit{power\_step}. For a given modulation format, the main loop iterates through each power level in this range, subjecting the altimeter to this interference power. This allows the user to step through increasing power with as much granularity as is desired for the test
-
 \begin{table}[]
 \centering
 \begin{tabular}{@{}cccccccc@{}}
@@ -180,9 +176,14 @@ ID & Altimeter   & Start Time          & End Time            & Modulation &Carri
 1  & Alt A & 19:23:06 & 19:23:07 & MSK & 4300  MHz & -10  dBm & OFF      \\
 2  & Alt A & 19:23:07 & 19:23:08 & MSK & 4300   MHz & -10 dBm& ON       \\ \bottomrule
 \end{tabular}
-\caption{Example Copilot Export}
+\caption{Example Interference Signal}
 \label{tab:Interference}
 \end{table}
+
+A variety of parameters controls the progression of different interference signals. The \textit{interference\_duration} and \textit{signal\_off\_duration}, define the length of time the altimeter will be subjected to a particular interference signal, as well as the length of time the altimeter will have to recover from any error caused by the previous signal. Throughout the main loop, each signal's Start Time and End time is calculated using interference duration variables. 
+
+ A range of RF powers is specified using \textit{power\_min}, \textit{power\_max}, and \textit{power\_step}. For a given modulation format, the main loop iterates through each power level in this range, subjecting the altimeter to this interference power. This allows the user to step through increasing power with as much granularity as is desired for the test
+
 
 The final variable which is important to the progression of a test is a list called \textit{modulation\_formats}, which contains strings corresponding to the different modulations the VSG will generate. MSK and OFDM signals of varying bandwidths will be listed here. The main loop iterates through each string in this list, passing the string to helper functions. 
 
@@ -221,14 +222,14 @@ Using this method, different theories for potential causes of the hanging delays
  
  While the hanging delays were investigated, the VSG State table revealed another source of imprecision in timing commands. It was noticed that the VSG State would not change until nearly a second longer than the \textit{Interference Duration} or \textit{Signal off Duration} parameters specified. This drift occurred because the main loop used Pythons in built \textit{Sleep()} function to handle timing. The sleep function used the exact interference duration passed as a parameter. After the program 'woke up' the commands to set the next interference signal up would be called, thus introducing a small delay beyond the specified duration. 
  
- This problem was dealt with by replacing the \textit{Sleep()} function with a custom function called \textit{Wait\_Until()}. This new function takes the signal end time as a parameter (See Table ~\ref{tab:Interference}), subtracts the current time from the end time, and uses the new value as the parameter for Python's in-built sleep function. This allows the next end time to be calculated in advance by adding the \textit{Interference Duration} or \textit{Signal off Duration} to the previous signal's end time, and storing the previous signal's end time as the start time for the next signal. [This section definitely could use some sort of diagram...]
+ This problem was dealt with by replacing the \textit{Sleep()} function with a custom function called \textit{Wait\_Until()}. This new function takes the signal end time as a parameter (See Table ~\ref{tab:Interference}), subtracts the current time from the end time, and uses the new value as the parameter for Python's in-built sleep function. This allows the next end time to be calculated in advance by adding the \textit{Interference Duration} or \textit{Signal off Duration} to the previous signal's end time, and storing the previous signal's end time as the start time for the next signal. %[This section definitely could use some sort of diagram...]
 
 Using the \textit{wait until} method to time commands offered important new flexibility to the main loop. This method allows writing signals to a database, setting up the baseband generators, and pinging the VSG for the VSG State information all to occur while the VSG is in an RF OFF state. While the VSG settings can not be adjusted in RF ON while maintaining the integrity of the signal, writing to the database and pinging the VSG for state information can also be done during this state, and the \textit{wait until} function will still wake the program at the proper time to turn the VSG on or off. The implementation of the \textit{wait until} function eliminated the drift problem, and allowed for the \textit{Interference Duration} and \textit{Signal Off Duration} parameters to precisely control the signal on and off time. 
 
 \begin{figure}[ht]
 \centering
 \includegraphics[scale=0.65]{sync_err.PNG}
-\caption[]{Height Plot Showing Sync Error}
+\caption{Height Plot Showing Sync Error}
 
 \label{fig:sync}
 
@@ -297,12 +298,12 @@ ID & Timestamp  & Ch\# & Carrier& Altimeter & Height & Modulation  & Power& Stat
 \caption{Example Full Dataset Table}
 \label{tab:Full}
 \end{table}
-\subsubsection{Plotting the Data}
-This section will cover the plotting scripts in depth, or it will mention them briefly while they are covered in depth in the results section. 
-\subsection{Initial Test Plan}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Initial Test Plan}
 The test setup design described above gave a wide degree of flexibility to the type, magnitude, and timing of interference the altimeters could be subjected to. While some preliminary tests helped to develop and debug the test setup, these were not comprehensive enough to draw conclusions from. This covers the development questions of for and the execution of the first  comprehensive test regimen. Additionally, this section pieces together the components discussed earlier into a complete test diagram. 
 
-\subsubsection{Motivations}
+\subsection{Motivations}
 The initial testing regimen had a series of questions about the behavior of real altimeters in the presence of interference that needed to be answered: 
 
 \begin{itemize}
@@ -315,7 +316,7 @@ The initial testing regimen had a series of questions about the behavior of real
 
 A discussion of preliminary testing between the PMC and the author in the context of these driving motivations led to development of the methods discussed in earlier sections which culminated in the test procedure discussed here.  
 
-\subsubsection{Complete Diagram}
+\subsection{Complete Diagram}
 While the diagram of the Modified Test Setup in Figure~\ref{fig:Modified} gives conceptual background to the tests, and Figure~\ref{fig:Altitude_Simulator} gives detailed insight into the operation and configuration of the altitude simulator, neither is detailed enough to provide the context necessary for a complete test description. Figure~\ref{fig:Initial} shows the full test setup used in detail. A full page version is provided in Appendix 1. 
 
 
@@ -324,7 +325,7 @@ While the diagram of the Modified Test Setup in Figure~\ref{fig:Modified} gives 
 \begin{figure}[ht]
 \centering
 \includegraphics[scale=0.5]{Initial_Full_Setup.PNG}
-\caption[]{Full Test Bench Diagram for Initial Tests}
+\caption{Full Test Bench Diagram for Initial Tests}
 
 \label{fig:Initial}
 
@@ -338,16 +339,47 @@ For 500ft, which had the lowest attenuation, the loop loss from TX to RX was jus
 Several elements not shown in the conceptual diagram from Figure~\ref{fig:Modified} are added in Figure~\ref{fig:Initial}. The output of the VSG is divided between the interference injection point and a spectrum analyzer using a 6dB resistive coupler. The spectrum analyzer allows the test operator to view the interference signals actively being tested, and make adjustments to the setup when they don't match expectations. A directional coupler allows interference to be inserted into the altimeter line at the injection point without adding additional attenuation to the loop. 
 
  Other elements pictured which weren't on the original diagram include coax switches and an ARINC 600 tray. The tray and switches are necessary in part because the DC power supply to each altimeter is different, and the tray acts as a protection from damage. Additionally, they allow for quick and easy alternating between the various altimeters under test, which is important in case any of this is ever actually flight tested. 
+\subsection{Breaking Point Definition}
 
-\subsubsection{Interference Signals Used}
+The purpose of these tests was to search for an altimeter's `breaking point' under various scenarios of interference. Performance standards for radio altimeters first set out in DO-155 were updated in the ARINC 707 standards~\cite{noauthor_arinc_2009}. The standards stated that ``radio altimeter accuracy, when measured in accordance with RTCA DO-155, [should] be within 1.5 feet or 2\%, whichever is greater.''  WAIC or out of band interference needed to demonstrate that it distorted the altitude signal less than these standards. Thus, the breaking point was defined as either a) a maximum height error beyond the 2\% or 1.5 feet allowable by ARINC 707, or b) any height reading labeled NCD. 
 
-\section{Expanding the Test Setup}
+\subsection{Test Definition}
+\begin{table}[]
+\begin{tabular}{c|c|c|c|c|c|c|c|c}
+\multicolumn{4}{c|}{\textbf{Interference Signal}}   & \multicolumn{3}{c|}{\textbf{VSG RF Power}} & \multicolumn{2}{c}{\textbf{Power Durations}} \\
+Modulation & Bandwidth & Center   & Offset & Min         & Step    & Max       & ON                & OFF              \\ \hline
+MSK        & 5 MHz     & 4300 MHz & 0 MHz  & -60 dBm     & 2 dB    & 10 dBm    & 10 s              & 10 s             \\
+Dual MSK   & 5 MHz     & 4300 MHz & 20 MHz & -60 dBm     & 2 dB    & 10 dBm    & 10 s              & 10 s             \\ \hline
+OFDM       & 5 MHz     & 4300 MHz & 0 MHz  & -60 dBm     & 2 dB    & 10 dBm    & 10 s              & 10 s             \\
+Dual OFDM  & 5 MHz     & 4300 MHz & 20 MHz & -60 dBm     & 2 dB    & 10 dBm    & 10 s              & 10 s             \\ \hline
+OFDM       & 10 MHz    & 4300 MHz & 0 MHz  & -60 dBm     & 2 dB    & 10 dBm    & 10 s              & 10 s             \\
+Dual OFDM  & 10 MHz    & 4300 MHz & 20 MHz & -60 dBm     & 2 dB    & 10 dBm    & 10 s              & 10 s             \\ \hline
+OFDM       & 20 MHz    & 4300 MHz & 0 MHz  & -60 dBm     & 2 dB    & 10 dBm    & 10 s              & 10 s             \\
+Dual OFDM  & 20 MHz    & 4300 MHz & 20 MHz & -60 dBm     & 2 dB    & 10 dBm    & 10 s              & 10 s             \\ \hline
+OFDM       & 40 MHz    & 4300 MHz & 0 MHz  & -60 dBm     & 2 dB    & 10 dBm    & 10 s              & 10 s             \\
+OFDM       & 80 MHz    & 4300 MHz & 0 MHz  & -60 dBm     & 2 dB    & 10 dBm    & 10 s              & 10 s            
+\end{tabular}
+\caption{Test Definition For Initial Testing Regimen}
+\label{tab:initial_signals}
+
+
+\end{table}
+Table~\ref{tab:initial_signals} shows the interference signals used for one of the last runs of the initial testing regimen. This test definition was the result of a year and a half long process of expirimentation with the test setup.Tests expirimented with loop loss settings, investigated the ARINC429 synchronization issues, investigated the relative sensitivity of different portions of the band, and investigated the bandwidth dependence of interference signals. The results of the earlier tests are summarized here, while the test definition from Table~\ref{tab:initial_signals} is used as a representative example. 
+
+Early tests experimented with the position from which loop loss was to be measured. There was an argument that the loop loss should be measured between the terminals of the altitude simulator rather than the terminals of each altimeter. This was abandoned when multiple altimeters were unable to acquire an altitude signal with the higher loop loss. This led to the values from Table~\ref{tab:loop loss} of attenuation between altimeter terminals being finalized. Investigations into the measurement syncronization issue were covered in depth in Section~\ref{subsub:timing}.
+
+ Another early test procedure investigated which portion of the radio altimeter band was most sensitive to interference. OFDM signals of the same bandwidth were placed at varying center frequencies to test the altimeters' sensitivity to band placement. These tests confirmed the hypothesis that the center of the radio altimeter band was the most sensitive to interfering signals. 
+
+Finally, the test regimen shown in Table~\ref{tab:initial_signals} was used to systematically investigate the sensitivity of the radio altimeters to different bandwidths of interference. These signals were used across all altimeters under test, and across all altitudes the optical delay line could produce in Table~\ref{tab:loop loss}. The results are discussed in Section~\ref{sec:initial_results}.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Expanding the Test Setup}\label{sec:expanding}
 The results from the initial test regimen led to new avenues of investigation. The dependence of results upon the bandwidth occupied by interference signals led to a need for wider bandwidth signals in the test bed. A desire to present the worst possible case for an aircraft led to testing at lower altitudes with interference from other altimeters. This simulated an approach or takeoff scenario at a busy airport. Finally, developments in 5G communications lobbying for access to adjacent bands led to an investigation of the tolerance of real altimeters to out of band interference. All of this required modifications to the initial testing concept from Figure~\ref{fig:Modified} to couple in an extra VSG and simulated altimeter signals at the interference injection point (Figure ~\ref{fig:Wideband}).
 \begin{figure}[ht]
 \centering
 
 \includegraphics[scale=.5]{Wideband_Test_Setup.png}
-\caption[]{Expanded Test Bench For Wideband and Altimeter Interference.}
+\caption{Expanded Test Bench For Wideband and Altimeter Interference.}
 
 \label{fig:Wideband}
 
@@ -361,7 +393,7 @@ To supplement, this a Rhode and Schwarz SMW 200A was located in the senior desig
 \begin{figure}[ht]
 \centering
 \includegraphics[scale=1]{Isolators_Coupler.PNG}
-\caption[]{Circulator with Matched Load Added to Protect VSGs}
+\caption{Circulator with Matched Load Added to Protect VSGs}
 
 \label{fig:circulator}
 \end{figure}
@@ -374,7 +406,7 @@ AVSI began looking into purchasing other couplers to provide higher isolation to
 \begin{figure}[ht]
 \centering
 \includegraphics[scale=.4]{Coupler_Swap.png}
-\caption[]{Modifications for Higher Interference Power}
+\caption{Modifications for Higher Interference Power}
 
 \label{fig:coupler_swap}
 
@@ -398,7 +430,7 @@ A worst-case scenario for the interference experienced by a victim altimeter fro
 \begin{figure}[ht]
 \centering
 \includegraphics[scale=.5]{Victim_RA.png}
-\caption[]{Geometry Used in ~\cite{noauthor_compatibility_2014} for Interference During Landing Scenario}
+\caption{Geometry Used in ~\cite{noauthor_compatibility_2014} for Interference During Landing Scenario}
 
 \label{fig:victim_ra}
 
@@ -416,7 +448,7 @@ In addition to specifying the path loss experienced by WAIC interferers located 
 \begin{figure}[ht]
 \centering
 \includegraphics[scale=.6]{IPL_Plot.png}
-\caption[]{Plot of IPL values for 15 closest aircraft}
+\caption{Plot of IPL values for 15 closest aircraft}
 
 \label{fig:IPL}
 
@@ -434,6 +466,49 @@ Several approaches were considered to simulate altimeter signals for the approac
 Eight two channel function generators and 16 VCOs were ordered for this purpose. The function generators were configured to output a triangle voltage wave to drive the VCOs in the FMCW pattern seen in Figure~\ref{fig:FMCW}. The min and max voltage on the triangle wave correspond to the VCO setting for the min and max frequency of the simulated altimeter waveform. The frequency of the voltage waveforms was varied between different VCOs to simulate the varying pulse frequencies exhibited by different altimeters as well as to provide randomness to the simulation. It was considered critical that the different simulated altimeter signals were asynchronous to provide a realistic scenario. 
 
 
+\subsubsection{Connecting the VCO Signals}
+Figure~\ref{fig:VCO_Coupler} shows how the VCO signals were coupled together to simulate 16 different altimeter signals. While the initial plan had been to simulate every altimeter on the 15 closest aircraft to the victim, the VCOs became backordered after the first 16, and empirical studies showed that the effects of the higher power ``on board'' simulated altimeter signals overwhelmingly dominated the effects of the ``external'' VCOs. 
+\begin{figure}[ht]
+\centering
+\includegraphics[scale=.85]{Altimeter_Signal_Simulator.png}
+\caption{Diagram of Combined 16 Simulated ALtimeter Signals}
+
+\label{fig:VCO_Coupler}
+
+\end{figure}
+Each VCO was configured to simulate the RF power of an altimeter (typically 30dBm), and the associated path loss from interferer TX to victim RX. This was accomplished with a variety of sources of attenuation. Each VCO output 4dBm of RF power according to the data-sheet. Fixed attennuators could be placed at the RF output of each VCO to achieve individualized IPL values. Each splitter contributed 6dB of attenuation to a connected path. The 4-channel programmable attenuator offered programmable values between 0 and 63 dB of attenuation. Lab measurements found that the programmable attenuator contributed 4 dB with a programmed setting of 0 and confirmed that each dB of programmed attenuation added a dB to this value. Finally, the attenuation from the interference injection point to the altimeter RX is added to the path loss. 
+
+\begin{table}[]
+\begin{tabular}{c||ccccc}
+\textbf{VCO} & Power {[}dBm{]} & Fixed {[}dB{]} & Programmable {[}dB{]} & Path Loss {[}dB{]} & Power at RX {[}dBm\} \\ \hline
+\textbf{1}   & 4               & 0              & X                     & -34                & -30                  \\
+\textbf{2}   & 4               & 0              & X                     & -34                & -30                  \\ \hline
+
+
+\textbf{3}   & 4               & 0              & -25                   & -59                & -80                  \\
+\textbf{4}   & 4               & 0              & -25                   & -59                & -80                  \\ \hline
+
+
+\textbf{5}   & 4               & 0              & -5                    & -59                & -60                  \\
+\textbf{6}   & 4               & 0              & -5                    & -59                & -60                  \\
+\textbf{7}   & 4               & 0              & -5                    & -59                & -60                  \\
+\textbf{8}   & 4               & -6             & -5                    & -59                & -66                  \\ \hline
+
+
+\textbf{9}   & 4               & 0              & -11                   & -59                & -66                  \\
+\textbf{10}  & 4               & 0              & -11                   & -59                & -66                  \\
+\textbf{11}  & 4               & -10            & -11                   & -59               & -76                  \\
+\textbf{12}  & 4               & -9             & -11                   & -59                & -75                  \\ \hline
+
+
+\textbf{13}  & 4               & 0              & -22                   & -59                & -77                  \\
+\textbf{14}  & 4               & 0              & -22                   & -59                & -77                  \\
+\textbf{15}  & 4               & 0              & -22                   & -59                & -77                  \\
+\textbf{16}  & 4               & 0              & -22                   & -59                & -77                 
+\end{tabular}
+\caption{VCO Attenuation Configurations for 200ft Worst Case}
+\label{tab:VCO_Pow}
+\end{table}
 \subsubsection{Calibrating The VCOs}
 The VCOs ordered for this purpose could go beyond the 4.2-4.4 GHz range, but a control voltage did not necessarily map to the same frequency across different VCOs. This meant that each of the 16 VCOs needed to be calibrated. First, each VCO was connected to a 5V power supply, and the control pin was connected to a separate power supply. The RF output of each VCO was connected to the spectrum analyzer for observation. The frequency output by a VCO under constant voltage had a bit of a `wobble' to it, so the spectrum analyzer was configured to display a \textit{Max Hold} instead of a real time measurement. After a VCO was left on a control voltage for several seconds, a marker was used to locate the frequency of the maximum output at that setting. 
 
@@ -474,17 +549,96 @@ A second calibration was attempted to fix this. The goal was to get the simulate
 Once the lower and upper voltages were determined, a simple calculation found the center voltage and amplitude necessary to feed into the function generators. In addition to the amplitude and offset settings available to the function generator, the control voltage wave had a frequency parameter. These were chosen in part with enough variance so that there was no synchronization between the different simulated altimeter signals. Random crossover of the simulated altimeter signals was desired to closely match the real world interference scenario. Function generator parameters are also shown in Table~\ref{tab:VCO_Cal}.
 
 \subsubsection{VCO Protection Circuit}
-While the VCO's were designed to operate with a control voltage between 0 and 5V, they were later verified to tolerate a maximum 6.5V signal before a catastrophic failure. Because the Function Generators were capable of a 20V peak to peak signal, they could damage a VCO with an accidental twist of a knob, and a protection circuit was needed.
+While the VCO's were designed to operate with a control voltage between 0 and 5V, they were later verified to tolerate a maximum 6.5V signal before a catastrophic failure. Because the Function Generators were capable of up to a 20V peak to peak signal, they could damage a VCO with an accidental twist of a knob, and a protection circuit was needed.
+
+\begin{figure}[ht]
+\centering
+\includegraphics[scale=.6]{Protective_Circuit.png}
+\caption{Double Clipper Protective Circuit}
+
+\label{fig:Clipper}
+
+\end{figure}
+
 
  Initially, the protective circuit seemed even more urgent. The voltage setting on the function generator starts at 10V upon power up, but does not clearly mark whether this is a peak to peak voltage or $\pm10$ V. Compounding this ambiguity, when the output of the function generators was measured with an oscilloscope, the multiplier setting was set to 2X. This made it appear to be a $\pm10$ V signal on startup which would fry the VCO if the function generator was accidentally power cycled. This error was only noticed after the protective circuit was designed and built. 
 
-After some searching, a limiter or `clipper' circuit was decided on to protect the VCOs. Clippers consist of a resistor and one or two diodes. Various designs of clipper circuits and the trade-offs between them are discussed in~\cite{sedra_microelectronic_2015}. Based on this discussion, a double clipper was decided on because it would limit both the positive and negative extremes of the control waveform. The clipper circuit was modeled in a spice program so that different diode cutoff voltages could be tried. Simulations narrowed this down to a 6 (?)V Zener (?) diode. The diagram is shown in Figure~\ref{fig:Clipper}
+After some searching, a limiter or `clipper' circuit was decided on to protect the VCOs. Clippers consist of a resistor and one or two diodes. Various designs of clipper circuits and the trade-offs between them are discussed in~\cite{sedra_microelectronic_2015}. Based on this discussion, a double clipper like the one shown in Figure~\ref{fig:Clipper} was decided on. Two zener diodes begin to limit the upper and lower voltage extremes once they pass the diode's cutoff voltage. A resistor is placed in series with the diodes to limit the current in the diodes to safe levels. 
+\begin{figure}[ht]
+\centering
+\includegraphics[scale=1.3]{Clipped_Sin_Wave.png}
+\caption{Double Clipper Protective Circuit}
 
-\subsubsection{Deriving VCO Attenuation}
+\label{fig:Clipped_Sin}
+
+\end{figure}
+
+The clipper circuit was modeled in a spice program so that different diode cutoff voltages could be tried. Simulations showed that the output voltage from this circuit would typically go slightly above the cutoff voltage. Because of this, a Zener diode with a 6 Volt cutoff was chosen to limit the output below the 6.5 Volt failure point. A simulated ouptut from the clipper circuit waveform is shown in Figure~\ref{fig:Clipped_Sin}. A $\pm$10 V sin wave is fed from the function generator, shown in green, and the `clipped' waveform is shown in red. The circuit allows voltages close to the failure point without reaching it. This performance was verified with an oscilloscope for each function generator output.
+
 
 \subsection{Testing Lower Altitudes}
-A final major modification from the initial test regimen involved adding different altitude simulator configurations to the rotation to achieve lower altitudes. These were touched on briefly in Section~\ref{sub:Implementing}.
+A final major modification from the initial test regimen involved adding different altitude simulator configurations to the rotation to achieve lower altitudes. These were touched on briefly in Section~\ref{sub:Implementing}. Lower altitude tests were first started before the approach scenario analysis determined that 200ft was the worst case scenario. Once the worst case analysis was determined, lower altitude tests were continued to provide supplementary evidence at another altitude in the landing scenario. 
+\begin{figure}[ht]
+\centering
+\includegraphics[scale=.55]{Low_Altitude_Simulator.png}
+\caption{Left: 40ft Altitude Simulator; Right: 95 ft Altitude Simulator}
 
-\subsection{Dual-VSG In Band Testing}
+\label{fig:Low_Altitudes}
 
-\subsection{Dual-VSG Out Of Band}
+\end{figure}
+
+Two different coaxial cables were used to simulate different altutudes below the 500ft threshold the optical delay line was capable of. Firstly, a coaxial cable providing 40ft altitude was located in the lab for this purpose, shown on the left of Figure~\ref{fig:Low_Altitudes}. When measured with a VNA, this coax had only a 6dB attenuation, so two 20dB fixed attenuators were placed on either side to increase the attenuation. This allowed the same step and fixed attenuator combination from Figure~\ref{fig:Altitude_Simulator} to easily achieve the DO-155 attenuation from Table~\ref{tab:loop loss}. The 40ft altitude simulator underwent the same modification as the Fiber Optic Line in Figure~\ref{fig:coupler_swap}, which allowed higher power interference signals without modifying the fixed and step attenuator settings in use. 
+
+The second altitude simulator used during these tests was a 95ft cable which was ordered after a significant nubmer of 40ft tests had been run. The 40ft tests had revealed a problem where one of the newer altimeters (with more advanced signal processing) would not output an altitude below a certain threshold unless it detected that the aircraft was moving. This precipitated the 95ft tests so that an altitude below the 200ft worst case could be tested across all units. The 95ft cable was a lower quality coax than the 40ft cable, and when measured with a network analyzer showed an approximately 38dB attenuation at 4.3 GHz. This was confirmed to be approximately the expected attenuation for this length of coax from the manufacturer's website. Once again, a fixed and step attenuator allowed the altitude simulator to be fully adjustable and achieve the DO-155 specified attenuation. 
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Expanded Setup Test Plans}
+The different modifications discussed above were combined into a full setup. This was used to test the altimeters in approach scenarios, to detremine a breaking point for full spectrum interference for the purposes of regulation, and to investigate the effects of adjacent band interference signals.
+\subsection{Full Setup Diagram}
+\begin{figure}[ht]
+\centering
+\includegraphics[scale=.75]{Full_Setup.PNG}
+\caption{Full test setup combining various modifications to Figure~
+\ref{fig:Initial}}
+
+\label{fig:combined}
+
+\end{figure}
+Figure~\ref{fig:combined} shows the full test setup diagram. The modifications covered in Section~\ref{sec:expanding}, including the second VSG, isolators to protect the VSG's, and the VCO setup to simulate 16 other altimeter signals are included in this diagram. Depending on the desired test scenario, the lower altitude simulators from Figure~\ref{fig:Low_Altitudes} were substitute in for the optical delay line, and as tests progressed, the modification shown in Figure~\ref{fig:coupler_swap} allowed for higher interference powers. 
+
+\subsection{Breaking Point Definition}
+Early tests showed that powerful itnerference signals would not only cause outliers which broke the ARINC 707~\cite{noauthor_arinc_2009} standards, but also caused a distortion of the mean height. Since presenting a more restrictive standard to regulators was seen as beneficial, a stronger definition of breaking point was introduced compared to previous tests. Thus, the breaking point definition was expanded to include either a) a maximum height error beyond the 2\% or 1.5 feet allowable by ARINC 707, b) any height reading labeled NCD, or \textbf{c)} a mean height error greater than 0.5\%. 
+
+\subsection{In Band Testing}
+\begin{table}[]
+\begin{tabular}{c|c|c|c|c|c|c|c}
+\multicolumn{3}{c|}{\textbf{Interference Signal}} & \multicolumn{3}{c|}{\textbf{VSG RF Power}} & \multicolumn{2}{c}{\textbf{Power Durations}} \\
+Modulation    & Bandwidth   & Center     & Min         & Step    & Max       & ON                & OFF              \\ \hline
+OFDM          & 200 MHz     & 4300 MHz   & -56 dBm     & 2 dB    & 19 dBm    & 60 s              & 20 s            
+\end{tabular}
+\caption{Interference Signals for Wideband Testing}
+\label{tab:Wideband}
+\end{table}
+
+
+Table~\ref{tab:Wideband} shows the interference signals used to run the in band dual vsg tests. The purpose of these tests was to find the `breaking point' of each altimeter when subjected to a full band of interference signals under worse than possible real life conditions. When the worst breaking point among the altimeters sampled was found, the comittee would add a margin of a few dB and propose that number to regulators. These results are discussed in Section~\ref{sec:dvsg_ib_results}
+\subsection{Out of Band Testing}
+Finally, Table~\ref{tab:oob} shows a representative test definition for the out of band tests run under AFE76s2. These tests were designed to develop an RF power mask on the upper and lower side of the radio altimeter bands. This mask could be brought to regulators with a proposal to limit users in adjacent bands a certain margin below the altimeter breaking point. 
+
+Initially, the 5MHz wide OFDM signals used in previous tests were tried. However, after initial results came in, more granular sweep was desired, so the bandwidth was reduced to the 200kHz signals shown in Table~\ref{tab:oob}. When the 200kHz waveform was measured on the spectrum analyzer, it was noticed that the waveform center was slightly offset from the carrier frequency. The lower edge of the waveform was approximately 35 kHz below the carrier, and the upper edge was approximately 165 kHz above the carrier. 
+
+Since the test goal was to step an OFDM waveform with the upper edge directly on 4.2 GHz, and step away from the altimeter band till the upper edge was 5 MHz away from the band edge. Waveforms in the upper adjacent band were placed at 4200.035 MHz and stepped to 4205.035 MHz for the same reason.
+
+These tests are ongoing at the time of writing, and will likely go through a few more iterations before being finalized, but preliminary results from this test definition are discussed in Section~\ref{sec:dvsg_oob_results}
+
+\begin{table}[]
+\begin{tabular}{cc|cc|ccc|cc}
+\multicolumn{4}{c|}{\textbf{Interference Signal}}                                     & \multicolumn{3}{c|}{\textbf{VSG RF Power}} & \multicolumn{2}{c}{\textbf{Durations}} \\
+                                &           & \multicolumn{2}{c|}{Center Frequencies} &                &            &              &                               &         \\
+\multicolumn{1}{c|}{Modulation} & Bandwidth & Min {[}MHz{]}      & Max {[}MHz{]}      & Min            & Step       & Max          & \multicolumn{1}{c|}{ON}       & OFF     \\ \hline
+\multicolumn{1}{c|}{OFDM}       & 200 kHz   & 4194.835           & 4199.835           & -60 dBm        & 2 dB       & 10 dBm       & \multicolumn{1}{c|}{10 s}     & 10 s    \\
+\multicolumn{1}{c|}{OFDM}       & 200 kHz   & 4194.835           & 4199.835           & -60 dBm        & 2 dB       & 10 dBm       & \multicolumn{1}{c|}{10 s}     & 10 s   
+\end{tabular}
+\caption{Interference Signals For Out Of Band Testing}
+\label{tab:oob}
+\end{table}
