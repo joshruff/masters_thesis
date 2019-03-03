@@ -300,7 +300,7 @@ ID & Timestamp  & Ch\# & Carrier& Altimeter & Height & Modulation  & Power& Stat
 \end{table}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{Initial Test Plan}
+\section{Initial `Waic Only' Test Plan}\label{sec:initial}
 The test setup design described above gave a wide degree of flexibility to the type, magnitude, and timing of interference the altimeters could be subjected to. While some preliminary tests helped to develop and debug the test setup, these were not comprehensive enough to draw conclusions from. This covers the development questions of for and the execution of the first  comprehensive test regimen. Additionally, this section pieces together the components discussed earlier into a complete test diagram. 
 
 \subsection{Motivations}
@@ -481,30 +481,30 @@ Each VCO was configured to simulate the RF power of an altimeter (typically 30dB
 \begin{table}[]
 \begin{tabular}{c||ccccc}
 \textbf{VCO} & Power {[}dBm{]} & Fixed {[}dB{]} & Programmable {[}dB{]} & Path Loss {[}dB{]} & Power at RX {[}dBm\} \\ \hline
-\textbf{1}   & 4               & 0              & X                     & -34                & -30                  \\
-\textbf{2}   & 4               & 0              & X                     & -34                & -30                  \\ \hline
+\textbf{1}   & 4               & -18              & X                     & -16                & -30                  \\
+\textbf{2}   & 4               & -18              & X                     & -16                & -30                  \\ \hline
 
 
-\textbf{3}   & 4               & 0              & -25                   & -59                & -80                  \\
-\textbf{4}   & 4               & 0              & -25                   & -59                & -80                  \\ \hline
+\textbf{3}   & 4               & 0              & -56                   & -40                & -92                  \\
+\textbf{4}   & 4               & 0              & -56                   & -40                & -92                   \\ \hline
 
 
-\textbf{5}   & 4               & 0              & -5                    & -59                & -60                  \\
-\textbf{6}   & 4               & 0              & -5                    & -59                & -60                  \\
-\textbf{7}   & 4               & 0              & -5                    & -59                & -60                  \\
-\textbf{8}   & 4               & -6             & -5                    & -59                & -66                  \\ \hline
+\textbf{5}   & 4               & 0              & -26                    & -40                & -62                 \\
+\textbf{6}   & 4               & 0              & -26                    & -40 			& -62                  \\
+\textbf{7}   & 4               & 0              & -26                    & -40                & -62                  \\
+\textbf{8}   & 4               & 0             & -26                    & -40                & -62                  \\ \hline
 
 
-\textbf{9}   & 4               & 0              & -11                   & -59                & -66                  \\
-\textbf{10}  & 4               & 0              & -11                   & -59                & -66                  \\
-\textbf{11}  & 4               & -10            & -11                   & -59               & -76                  \\
-\textbf{12}  & 4               & -9             & -11                   & -59                & -75                  \\ \hline
+\textbf{9}   & 4               & 0              & -26                   & -40                & -62                  \\
+\textbf{10}  & 4               & 0              & -26                   & -40                & -62                  \\
+\textbf{11}  & 4               & -23            & -26                   & -40               & -85                  \\
+\textbf{12}  & 4               & -23             & -26                   & -40                & -85                  \\ \hline
 
 
-\textbf{13}  & 4               & 0              & -22                   & -59                & -77                  \\
-\textbf{14}  & 4               & 0              & -22                   & -59                & -77                  \\
-\textbf{15}  & 4               & 0              & -22                   & -59                & -77                  \\
-\textbf{16}  & 4               & 0              & -22                   & -59                & -77                 
+\textbf{13}  & 4               & 0              & -49                   & -40                & -85                  \\
+\textbf{14}  & 4               & 0              & -49                   & -40                & -85                  \\
+\textbf{15}  & 4               & 0              & -49                   & -40                & -85                  \\
+\textbf{16}  & 4               & 0              & -49                   & -40                & -85                 
 \end{tabular}
 \caption{VCO Attenuation Configurations for 200ft Worst Case}
 \label{tab:VCO_Pow}
@@ -606,10 +606,10 @@ The different modifications discussed above were combined into a full setup. Thi
 \end{figure}
 Figure~\ref{fig:combined} shows the full test setup diagram. The modifications covered in Section~\ref{sec:expanding}, including the second VSG, isolators to protect the VSG's, and the VCO setup to simulate 16 other altimeter signals are included in this diagram. Depending on the desired test scenario, the lower altitude simulators from Figure~\ref{fig:Low_Altitudes} were substitute in for the optical delay line, and as tests progressed, the modification shown in Figure~\ref{fig:coupler_swap} allowed for higher interference powers. 
 
-\subsection{Breaking Point Definition}
+\subsection{Breaking Point Definition}\label{sub:break}
 Early tests showed that powerful itnerference signals would not only cause outliers which broke the ARINC 707~\cite{noauthor_arinc_2009} standards, but also caused a distortion of the mean height. Since presenting a more restrictive standard to regulators was seen as beneficial, a stronger definition of breaking point was introduced compared to previous tests. Thus, the breaking point definition was expanded to include either a) a maximum height error beyond the 2\% or 1.5 feet allowable by ARINC 707, b) any height reading labeled NCD, or \textbf{c)} a mean height error greater than 0.5\%. 
 
-\subsection{In Band Testing}
+\subsection{In Band Testing}\label{sub:ib}
 \begin{table}[]
 \begin{tabular}{c|c|c|c|c|c|c|c}
 \multicolumn{3}{c|}{\textbf{Interference Signal}} & \multicolumn{3}{c|}{\textbf{VSG RF Power}} & \multicolumn{2}{c}{\textbf{Power Durations}} \\
@@ -622,7 +622,7 @@ OFDM          & 200 MHz     & 4300 MHz   & -56 dBm     & 2 dB    & 19 dBm    & 6
 
 
 Table~\ref{tab:Wideband} shows the interference signals used to run the in band dual vsg tests. The purpose of these tests was to find the `breaking point' of each altimeter when subjected to a full band of interference signals under worse than possible real life conditions. When the worst breaking point among the altimeters sampled was found, the comittee would add a margin of a few dB and propose that number to regulators. These results are discussed in Section~\ref{sec:dvsg_ib_results}
-\subsection{Out of Band Testing}
+\subsection{Out of Band Testing}\label{sub:oob}
 Finally, Table~\ref{tab:oob} shows a representative test definition for the out of band tests run under AFE76s2. These tests were designed to develop an RF power mask on the upper and lower side of the radio altimeter bands. This mask could be brought to regulators with a proposal to limit users in adjacent bands a certain margin below the altimeter breaking point. 
 
 Initially, the 5MHz wide OFDM signals used in previous tests were tried. However, after initial results came in, more granular sweep was desired, so the bandwidth was reduced to the 200kHz signals shown in Table~\ref{tab:oob}. When the 200kHz waveform was measured on the spectrum analyzer, it was noticed that the waveform center was slightly offset from the carrier frequency. The lower edge of the waveform was approximately 35 kHz below the carrier, and the upper edge was approximately 165 kHz above the carrier. 
