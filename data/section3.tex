@@ -74,7 +74,15 @@ Finally, these tests investigated the effects of interference bandwidth on altim
 These results were used to justify expanding the test setup and measuring altimeter response to wider bandwidth WAIC signals aggregated with interference from other altimeters to provide a realistic worst case scenario.
 
 \section{Expanded In Band Tests}\label{sec:dvsg_ib_results}
-% Please add the following required packages to your document preamble:
+This section discusses the results of the testing regimen described in Section~\ref{sub:ib}. The goal of this iteration of tests was to measure the response of altimeters to a full band of simulated WAIC interference, in the presence of simulated interference from other altimeters. The combined interference represented a more conservative than the real life worse case scenario for altimeter interference. 5 different altimeters were tested: the Rockwell Collins LRA2100, The Rockwell Collins LRA900, the Thales ERT530, the Thales ERT550, and the Honeywell ALA52B.
+ \begin{figure}[h!]
+	\centering
+	\includegraphics[width=6.0in]{RA4_ib_results.png}
+	\caption{Performance of RA Type 4 with 200MHz In Band Tests}
+	\label{fig:RA4}
+\end{figure}
+
+ % Please add the following required packages to your document preamble:
 % \usepackage{booktabs}
 \begin{table}[]
 \begin{tabular}{@{}cccccc@{}}
@@ -86,16 +94,16 @@ WAIC Interference Threshold & -54 dBm   & -56 dBm   & -44 dBm   & -56 dBm*  & -4
 \label{tab:ib_thresholds_fsmp}
 \end{table}
 
-This section discusses the results of the testing regimen described in Section~\ref{sub:ib}. The goal of this iteration of tests was to measure the response of altimeters to a full band of simulated WAIC interference, in the presence of simulated interference from other altimeters. The combined interference represented a more conservative than the real life worse case scenario for altimeter interference. 5 different altimeters were tested: the Rockwell Collins LRA2100, The Rockwell Collins LRA900, the Thales ERT530, the Thales ERT550, and the Honeywell ALA52B.
-
- The breaking point of each was found according to Section~\ref{sub:break}, and these were used to propose maximum radiated power thresholds to the FSMP~\cite{uwe_radio_2019}. The resulting minimum power thresholds, with altimeter names redacted, are shown in Table~\ref{tab:ib_thresholds_fsmp}
-
+ The breaking point of each was found according to Section~\ref{sub:break}, and these were used to propose maximum radiated power thresholds to the FSMP~\cite{uwe_radio_2019}. The resulting minimum power thresholds, with altimeter names redacted, are shown in Table~\ref{tab:ib_thresholds_fsmp}. RA Type 4 performed the worst of the 5 models tested, so the final threshold recommended to the FSMP was 56 dBm based on this failure point. Figure~\ref{fig:RA4} 
+ shows the results of this altimeter. The first breaking point occurs at -54 dBm interference power at the altimeter receiver, thus the WAIC threshold was set at -56 dBm. The results of the remaining altimeters are shown in Appendix~\ref{appendix_a} for completeness. 
 
 \section{Out of Band Testing}\label{sec:dvsg_oob_results}
+ \begin{figure}[h!]
+	\centering
+	\includegraphics[width=3.5in]{oob_mask.png}
+	\caption{Preliminary Interference Mask}
+	\label{fig:oob_mask}
+\end{figure}
 
-%
-%\begin{figure}[h!]
-%	\centering
-%	\includegraphics[width = 6.0in]{LowPass_Filter_Design.png}
-%	\caption{A low pass filter design.}
-%\end{figure}
+This section covers the results of the out of band testing regimen described in Section~\ref{sub:oob}. This test used the same expanded test setup as the 200 MHz in band tests. VCOs were used to simulate external altimeter signals at a 200ft approach, and one of the VSG's generated 130 MHz wide simulated WAIC interference. The second VSG stepped RF signals out from the band edges. The goal was to find how the breaking point changed with distance from the band edge in MHz. An example of these results plotted is shown in Figure~\ref{fig:oob_mask}. These tests are still in progress at the time of writing, but like the results in Section~\ref{sec:dvsg_ib_results}, are expected to justify reccomendations made to regulators for safe power thresholds in the adjacent bands. 
+
