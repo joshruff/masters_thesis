@@ -26,18 +26,19 @@ In addition to laying out performance standards for radar altimeters, the DO-155
 
 \end{figure}
 
-The standards elaborated on the necessary characteristics of the most critical part of the test-bed, the altitude simulator. The altitude simulator needed to ''consist of variable and fixed RF attenuators''~\cite{noauthor_minimum_1974}  to simulate the loop loss an altimeter experiences aboard an aircraft (see section 1.6.3). The altitude simulator also needed a length of ''coaxial cables or other suitable delays''~\cite{noauthor_minimum_1974}  to simulate the physical time delay experienced by an altimeter signal between the transmitter and receiver (see section 1.6.2). To complete the test setup, the altitude simulator directed the attenuated and delayed RF energy from the transmitter fed back into the receiver. 
+The standards elaborated on the necessary characteristics of the most critical part of the test-bed, the altitude simulator. The altitude simulator needed to ``consist of variable and fixed RF attenuators''~\cite{noauthor_minimum_1974}  to simulate the loop loss an altimeter experiences aboard an aircraft (see section 1.6.3). The altitude simulator also needed a length of ``coaxial cables or other suitable delays''~\cite{noauthor_minimum_1974}  to simulate the physical time delay experienced by an altimeter signal between the transmitter and receiver (see Section~1.6.2). To complete the test setup, the altitude simulator directed the attenuated and delayed RF energy from the transmitter fed back into the receiver. 
+%COMMENT: Use \ref for sections.
 
 
-Additionally, the standards specified that any test equipment must account for cross coupling between transmitting and receiving antennas. The setup used for these tests would be verified by radar experts to adequately compensate for that. DO-155 emphasized that the altitude simulator should achieve the desired altitude within 1\% and the correct attenuation within 2.5dB~\cite{noauthor_minimum_1974}. However, for the purposes of looking at the effects of interference, the absolute altitude is less important in these tests. 
+Additionally, the standards specified that any test equipment must account for cross coupling between transmitting and receiving antennas. The setup used for these tests would be verified by radar experts to adequately compensate for that. DO-155 emphasized that the altitude simulator should achieve the desired altitude within 1\% and the correct attenuation within 2.5~dB~\cite{noauthor_minimum_1974}. However, for the purposes of looking at the effects of interference, the absolute altitude is less important in these tests. 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Modified Altimeter Test Setup} \label{sec:Modified}
 \begin{figure}[ht]
 \centering
 \includegraphics[scale=0.45]{Modified_Test_Setup.png}
-\caption{Modified Altimeter Test Setup}
-
+\caption{Modified Altimeter Test Setup.}
+% Comment: Make complete caption sentences.
 \label{fig:Modified}
 
 \end{figure}
@@ -53,7 +54,8 @@ The labels are critical because some data points may be labeled NCD (No Computed
 \begin{figure}[ht]
 \centering
 \includegraphics[width = 6 in]{Altitude_Simulator.png}
-\caption{Internal Diagram of Altitude Simulator using optical delay line}
+\caption{Internal Diagram of Altitude Simulator using optical delay line.}
+% Comment: Make complete caption sentences.
 
 \label{fig:Altitude_Simulator}
 
@@ -62,34 +64,34 @@ The labels are critical because some data points may be labeled NCD (No Computed
 \subsubsection{Time Delay}\label{subsub:delay}
 Different test altitudes require the use of different methods of delaying the RF energy output by the altimeters. For the initial tests at higher altitudes, spools of fiber optic cables create a time delay as shown in Figure~\ref{fig:Altitude_Simulator}. The RF output from the altimeter transmitter was fed by coax connection to the fiber optic transceiver, which could either pass the signal to a single fiber optic spool or a series of cascaded spools to achieve a desired height. This setup contained optical spools of 500, 1000, 2000, and 4500 feet, each of which could be used individually or in conjunction with any or all of the other spools to implement a delay.
 
- The optical transceiver and cascaded spools also contribute an attenuation to the loop loss which varies based on the number of spools cascaded. A single spool setup has an attenuation verified experimentally to be 29dB, with an additional 2dB loss added for each additional cascaded spool.
+ The optical transceiver and cascaded spools also contribute an attenuation to the loop loss which varies based on the number of spools cascaded. A single spool setup has an attenuation verified experimentally to be 29~dB, with an additional 2~dB loss added for each additional cascaded spool.
 
-Later tests modified this delay setup to test an altimeter in takeoff and landing scenarios. The much lower height in these scenarios made spools of coax sufficient tor the delay instead of fiber optic cables. Two coax spools provided a height of 40 ft and 95 ft for testing these scenarios, with a 6dB and 36dB attenuation contributed to the loop loss respectively.  
+Later tests modified this delay setup to test an altimeter in takeoff and landing scenarios. The much lower height in these scenarios made spools of coax sufficient tor the delay instead of fiber optic cables. Two coax spools provided a height of 40~ft and 95~ft for testing these scenarios, with a 6~dB and 36~dB attenuation contributed to the loop loss, respectively.  
 
 \subsubsection{Achieving Standard Loop Losses}\label{subsub:loss}
 DO-155 specifies loop loss for various heights and antenna types. Table~\ref{tab:loop loss} lists the loop loss used for each height in these tests. To achieve the Loop Losses specified by DO-155 standards for each height, the attenuation inherent in the delay method used for each height must be taken into account. 
 
-Once the attenuation from the delay line is subtracted from the loop loss, 10, 20 and 30dB fixed attenuators inserted into the setup get within 10dB of the desired loop loss. The first 20dB attenuator is located ahead of the fiber optic transceiver to protect it from damage (see Figure~\ref{fig:Altitude_Simulator}.  Finally, a step attenuator capable of 1 to 11 dB is used to achieve the desired loop loss with a 1 dB precision. 
+Once the attenuation from the delay line is subtracted from the loop loss, 10, 20 and 30~dB fixed attenuators inserted into the setup get within 10dB of the desired loop loss. The first 20~dB attenuator is located ahead of the fiber optic transceiver to protect it from damage (see Figure~\ref{fig:Altitude_Simulator}.  Finally, a step attenuator capable of 1 to 11~dB is used to achieve the desired loop loss with a 1~dB precision. 
 
 \begin{table}[]
 \centering
 \begin{tabular}{|c|c|}
 \hline
 \textbf{Height} & \textbf{Loop Loss} \\ \hline
-40ft            & 76 dB              \\ \hline
-95ft            & 84 dB              \\ \hline
-500ft           & 100 dB             \\ \hline
-1500ft          & 109 dB             \\ \hline
-3000ft          & 116 dB             \\ \hline
-5000ft          & 120 dB             \\ \hline
-8000ft          & 124 dB             \\ \hline
+40ft            & 76~dB              \\ \hline
+95ft            & 84~dB              \\ \hline
+500ft           & 100~dB             \\ \hline
+1500ft          & 109~dB             \\ \hline
+3000ft          & 116~dB             \\ \hline
+5000ft          & 120~dB             \\ \hline
+8000ft          & 124~dB             \\ \hline
 \end{tabular}
 \caption{DO-155 Loop Losses}
 \label{tab:loop loss}
 \end{table}
 
 \subsection{Generating Interference Signals}\label{sub:Generating}
-A Rhode and Schwarz SMU200A Vector Signal Generator (VSG) is used to generate simulated WAIC signals of varying modulation types, bandwidths and power levels. The VSG has a SCPI interface which allows an external computer to control any functionality on the instrument through commands sent over either a serial or an Ethernet connection. 
+A Rhode and Schwarz SMU200A Vector Signal Generator (VSG) is used to generate simulated WAIC signals of varying modulation types, bandwidths, and power levels. The VSG has a SCPI interface which allows an external computer to control any functionality on the instrument through commands sent over either a serial or an Ethernet connection. 
 \begin{figure}[ht]
 \centering
 \includegraphics[scale=0.25]{MSK_wvfrm.png}
@@ -99,17 +101,18 @@ A Rhode and Schwarz SMU200A Vector Signal Generator (VSG) is used to generate si
 
 \end{figure}
 
-The AFE76 Project Management Committee (PMC) chose the modulation formats to represent candidate WAIC interference. The PMC chose to subject the altimeters to an MSK waveform, as well as OFDM waveforms of varying bandwidths and dual versions of both waveforms. These waveforms were chosen because of their similarity to systems in use for GSM and LTE cellular networks. This meant chipsets were widely available (designed for other frequencies), and WAIC networks could be modeled after purchased IP instead of developed from scratch. Each waveform used ''junk'' data to modulate the carrier, which consisted of randomly generated ones and zeros with equal probability of either.
+The AFE76 Project Management Committee (PMC) chose the modulation formats to represent candidate WAIC interference. The PMC chose to subject the altimeters to an MSK waveform, as well as OFDM waveforms of varying bandwidths and dual versions of both waveforms. These waveforms were chosen because of their similarity to systems in use for GSM and LTE cellular networks. This meant chipsets were widely available (designed for other frequencies), and WAIC networks could be modeled after purchased IP instead of developed from scratch. Each waveform used ``junk'' data to modulate the carrier, which consisted of randomly generated ones and zeros with equal probability of either.
 \subsubsection{MSK Waveform}\label{subsub:MSK}
-MSK or Minimum-Shift Keying is a type of modulation format which can be considered as a form of Phase-Shift Keying (PSK) or as a special case of Frequency Shift Keying (FSK)~\cite{proakis_communication_2002}. The frequency separation of an MSK signal, $\Delta f$ is: $$ \Delta f = \frac{1}{2T}$$
-and thus it has a modulation index of 1/2. This is ''the minimum frequency separation for orthogonality of the two sinusoids''~\cite{proakis_communication_2002}. An MSK waveform is shown on the spectrum analyzer screen-cap in Figure~\ref{fig:MSK}.
+MSK or Minimum-Shift Keying is a type of modulation format which can be considered as a form of Phase-Shift Keying (PSK) or as a special case of Frequency Shift Keying (FSK)~\cite{proakis_communication_2002}. The frequency separation of an MSK signal, $\Delta f$ is:
+$$ \Delta f = \frac{1}{2T}$$
+and, thus, it has a modulation index of 1/2. This is ``the minimum frequency separation for orthogonality of the two sinusoids''~\cite{proakis_communication_2002}. An MSK waveform is shown on the spectrum analyzer screen-cap in Figure~\ref{fig:MSK}.
 
 MSK modulation is available natively in the VSG software through the \textit{custom waveform} interface.  The Rhode and Schwarz VSG provides a number of common modulation options in this interface for the user to choose from. This simplifies the waveform generation for this case, as every in-built functionality on the VSG has a SCPI command corresponding to it. 
 
 
 \subsubsection{OFDM Waveform}\label{subsub:OFDM}
 
-Orthogonal Frequency-Division Multiplexing or OFDM attempts to achieve an efficient, wide-bandwidth communication system by ''dividing the channel bandwidth into equal-bandwidth sub-channels, where the bandwidth of each sub-channel is sufficiently narrow so that the frequency response... of sub-channels are nearly ideal''~\cite{proakis_communication_2002}. An OFDM waveform is shown on the spectrum analyzer screen-cap in Figure~\ref{fig:OFDM}.
+Orthogonal Frequency-Division Multiplexing or OFDM attempts to achieve an efficient, wide-bandwidth communication system by ''dividing the channel bandwidth into equal-bandwidth sub-channels, where the bandwidth of each sub-channel is sufficiently narrow so that the frequency response [...] of sub-channels are nearly ideal''~\cite{proakis_communication_2002}. An OFDM waveform is shown on the spectrum analyzer screen-cap in Figure~\ref{fig:OFDM}.
 \begin{figure}[ht]
 \centering
 \includegraphics[scale=0.25]{ofdm_wvfrm.png}
@@ -118,22 +121,25 @@ Orthogonal Frequency-Division Multiplexing or OFDM attempts to achieve an effici
 \label{fig:OFDM}
 
 \end{figure}
-One way to view the OFDM waveform is as a series of MSK waveforms spread out orthogonally along a desired bandwidth. From this perspective, MSK can be seen as the minimum bandwidth version of a system based on OFDM, and the altimeter can thus be subjected to wider and wider bandwidth systems to show the response to a greater number of WAIC devices on (or external to) an aircraft. This aspect, as well as the similarity of an OFDM signal to LTE systems made it a very attractive option for testing the impact of WAIC. 
+One way to view the OFDM waveform is as a series of MSK waveforms spread out orthogonally along a desired bandwidth. From this perspective, MSK can be seen as the minimum bandwidth version of a system based on OFDM, and the altimeter can thus be subjected to wider and wider bandwidth systems to show the response to a greater number of WAIC devices on (or external to) an aircraft. This aspect, as well as the similarity of an OFDM signal to LTE systems, made it a very attractive option for testing the impact of WAIC. 
 
 Generating OFDM signals with the VSG was a more involved process than generating MSK, because the functionality for creating OFDM was not available natively in the VSG software. Because of this, OFDM had to be generated through the VSG's \textit{Arbitrary Waveform Generator}. The arbitrary waveform generator enables the VSG to generate any waveform from IQ data stored in a file on the VSG. The SCPI command for generating an arbitrary waveform must include the file path for this IQ data.  
 
-This enabled an OFDM waveform to be specified by a Matlab script which exports raw IQ data, which is then converted to a form readable by the VSG through proprietary Rhode and Schwarz software. The conversion software allowed the user to adjust the clock rate, thus adjusting the bandwidth of the signal used. The bandwidth could then be measured with a spectrum analyzer to verify the process has yielded the expected waveform. The bandwidth of the OFDM waveform was defined as being 6 dB down from the peak envelope power. 
+This enabled an OFDM waveform to be specified by a Matlab script which exports raw IQ data, which is then converted to a form readable by the VSG through proprietary Rhode and Schwarz software. The conversion software allowed the user to adjust the clock rate, thus adjusting the bandwidth of the signal used. The bandwidth could then be measured with a spectrum analyzer to verify the process has yielded the expected waveform. The bandwidth of the OFDM waveform was defined as being 6~dB down from the peak envelope power. 
 
 
 \subsubsection{Dual Waveforms}\label{subsub:Dual}
-The VSG allows full control of an RF generator along with two baseband generators. The RF generator gives the user control of RF carrier frequency as well as the output power level of the carrier in dBm. The baseband generators allow the modulation of two potentially unique waveforms onto the carrier wave, with a possible offset frequency from the center. Both dual MSK waveforms and dual OFDM waveforms of bandwidth less than 40 MHz were tested using a +/-20 MHz offset between them. 
+The VSG allows full control of an RF generator along with two baseband generators. The RF generator gives the user control of RF carrier frequency as well as the output power level of the carrier in dBm. The baseband generators allow the modulation of two potentially unique waveforms onto the carrier wave, with a possible offset frequency from the center. Both dual MSK waveforms and dual OFDM waveforms of bandwidth less than 40~MHz were tested using a +/-20 MHz offset between them. 
 
 Dual waveforms were considered an important option for testing due to a special characteristic of some altimeters at low altitudes. As the plane descends, the sweep rate of an altimeter increases to give more frequent readings at a more safety critical phase of flight. This is done by significantly reducing the $\Delta f$ covered by the altimeter FMCW. The effects of this offset were thus investigated to determine whether WAIC's impact could be minimized at critical altitudes by leaving the center of the band clear. 
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Python Test Software}\label{sec:Python}
-Python code written by the author pieces together the various parts of this setup into an integrated test bench. The goal was to coordinate ARINC 429 signals gathered independently through the Ballard device with signals generated independently using the VSG. Additionally, software needed to manage large datasets for post processing. Different Python scripts control the various functions of the test bench. These include:
+Python code written by the author pieces together the various parts of this setup into an integrated test bench. The goal was to coordinate ARINC 429 signals gathered independently through the Ballard device with signals generated independently using the VSG.
+Additionally, software needed to manage large datasets for post processing.
+%COMMENT: Above is not a sentence.
+Different Python scripts control the various functions of the test bench. These include:
 
 \begin{itemize}
 \item Database Creation 
