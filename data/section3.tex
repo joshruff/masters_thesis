@@ -25,7 +25,7 @@ The first attempts at a representation of data taken during these tests develope
 \begin{figure}[h!]
 	\centering
 	\includegraphics[width=6.0in]{Example_Height_Plot.png}
-	\caption{Example Height Plot from Initial Testing Regimen}
+	\caption{Example Height Plot from Initial Testing Regimen.}
 	\label{fig:height_plot_example}
 \end{figure}
 Important information about the test being displayed is contained in the title of each height plot. This includes the altimeter make and model, the bandwidth and modulation format of the interference signal being tested, and the center frequency of RF carrier setting used by the VSG.
@@ -45,7 +45,7 @@ Figure~\ref{fig:stat_plot_example} shows an example stat plot made from the same
 \begin{figure}[h!]
 	\centering
 	\includegraphics[width=6.0in]{Example_Stat_Plot.png}
-	\caption{Example Stat Plot}
+	\caption{Example Stat Plot.}
 	\label{fig:stat_plot_example}
 \end{figure}
 
@@ -58,19 +58,19 @@ This section covers the results of the initial testing regimen described in Sect
 \begin{figure}[h!]
 	\centering
 	\includegraphics[width=6.0in]{Initial_Summary.png}
-	\caption{Summary of Initial Testing Results Presented to the FSMP in~\cite{uwe_radio_2019}}
+	\caption{Summary of Initial Testing Results Presented to the FSMP in~\cite{uwe_radio_2019}.}
 	\label{fig:initial_summary}
 \end{figure}
 
 Figure~\ref{fig:initial_summary} shows a comprehensive summary of these results. Each data point on shows the results of a single altimeter test equivalent to a height plot in Figure~\ref{fig:height_plot_example}. The data points plot the power level at which the altimeter under test goes beyond a mean error of $\pm0.5\%$. This plot served as an introduction to the presentation of the results of the second and third testing regimens~\cite{uwe_radio_2019}, as a means of showing how the WAIC only tests justified further investigation. 
 
-Early tests investigated the proper loop loss value to use. Although loop losses were specified in DO-155 (see Section~\ref{subsub:loss}), it was ambiguous as to whether the loop losses were to be measured between the ports of the altimeter or between the ports of the altitude simulator. While the language in the regulations made it seem intuitive to place the loop loss between the ports of the altitude simulator, the additional cable loss leading to and from the simulator made the altimeters unable to function. It was hypothesized that the worst case scattering coefficients in use for the loop loss calculation made the addition of cabling turn an already conservative case to an unrealistic one. Because these units were all certified, the loop loss was moved to the ports of the altitude simulator to ensure functionality, and this was noted in any communication of results to outside parties.
+Early tests investigated the proper loop loss value to use. Although loop losses were specified in DO-155 (see Section~\ref{subsub:loss}), it was ambiguous as to whether the loop losses were to be measured between the ports of the altimeter or between the ports of the altitude simulator. The language in the regulations made it seem intuitive to place the loop loss between the ports of the altitude simulator. However, when tests were attempted with this configuration, the additional cable loss leading to and from the simulator made the altimeters unable to function. It was hypothesized that the worst case scattering coefficients in use for the loop loss calculation made the addition of cabling turn an already conservative case to an unrealistic one. Because these units were all certified, the loop loss was moved to the ports of the altitude simulator to ensure functionality, and this was noted in any communication of results to outside parties.
 
 A series of tests during the initial testing regimen placed a 10~MHz OFDM signal at different points in the altimeter band. These showed that the altimeter under test consistently broke at lower power levels when interference was injected at the center of the band than at the outer edges. Subsequent testing only centered simulated WAIC waveforms at the center of the band to provide the most conservative results. 
 \begin{figure}[h!]
 	\centering
 	\includegraphics[width=6.0in]{Mean_Comparison_Example.png}
-	\caption{Comparison of Impact of Different Bandwidths of Simulated WAIC Signals on Altimeter Performance}
+	\caption{Comparison of Impact of Different Bandwidths of Simulated WAIC Signals on Altimeter Performance.}
 	\label{fig:mean_comparison}
 \end{figure}
 Finally, these tests investigated the effects of interference bandwidth on altimeter performance, and the effects of separating a waveform into a `dual' version of the waveform with a $\pm20$~MHz offset from the center. The test definition shown in Table~\ref{tab:initial_signals} was the last iteration of the test procedure run before expanding the setup, and functions to demonstrate these effects. Figure~\ref{fig:mean_comparison} shows a stat plot comparing the mean height error caused by interference signals of increasing bandwidth. These results consistently showed that wider bandwidth interference caused worse altimeter performance. Although dual waveforms helped performance, their impact was inconsistent.  
@@ -82,7 +82,7 @@ This section discusses the results of the testing regimen described in Section~\
  \begin{figure}[h!]
 	\centering
 	\includegraphics[width=6.0in]{RA4_ib_results.png}
-	\caption{Performance of RA Type 4 with 200MHz In Band Tests}
+	\caption{Performance of RA Type 4 with 200MHz In Band Tests.}
 	\label{fig:RA4}
 \end{figure}
 
@@ -94,7 +94,7 @@ This section discusses the results of the testing regimen described in Section~\
                             & RA Type 1 & RA Type 2 & RA Type 3 & RA Type 4 & RA Type 5 \\ \midrule
 WAIC Interference Threshold & -54 dBm   & -56 dBm   & -44 dBm   & -56 dBm*  & -44 dBm   \\ \bottomrule
 \end{tabular}
-\caption{Interference power level above which reported altitude is impacted~\cite{uwe_radio_2019}}
+\caption{Interference Power Level Above Which Reported Altitude is Impacted~\cite{uwe_radio_2019}.}
 \label{tab:ib_thresholds_fsmp}
 \end{table}
 
@@ -105,7 +105,7 @@ The breaking point of each was found according to Section~\ref{sub:break}, and t
  \begin{figure}[h!]
 	\centering
 	\includegraphics[width=3.5in]{oob_mask.png}
-	\caption{Preliminary Interference Mask}
+	\caption{Preliminary Interference Mask.}
 	\label{fig:oob_mask}
 \end{figure}
 
