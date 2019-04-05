@@ -73,18 +73,17 @@ DO-155 specifies loop loss for various heights and antenna types. Table~\ref{tab
 
 \begin{table}[]
 \centering
-\begin{tabular}{|c|c|}
-\hline
+\begin{tabular}{c|c}
 \textbf{Height} & \textbf{Loop Loss} \\ \hline
-40ft            & 76~dB              \\ \hline
-95ft            & 84~dB              \\ \hline
-500ft           & 100~dB             \\ \hline
-1500ft          & 109~dB             \\ \hline
-3000ft          & 116~dB             \\ \hline
-5000ft          & 120~dB             \\ \hline
-8000ft          & 124~dB             \\ \hline
+40ft            & 76~dB              \\ %\hline
+95ft            & 84~dB              \\ %\hline
+500ft           & 100~dB             \\ %\hline
+1500ft          & 109~dB             \\ %\hline
+3000ft          & 116~dB             \\ %\hline
+5000ft          & 120~dB             \\ %\hline
+8000ft          & 124~dB             \\ %\hline
 \end{tabular}
-\caption{DO-155 Loop Losses with $60\deg$ Beamwidth and Worst-Case Scattering.}
+\caption{DO-155 Loop Losses with 60 degree Beamwidth and Worst-Case Scattering.}
 \label{tab:loop loss}
 \end{table}
 
@@ -353,7 +352,7 @@ The purpose of these tests was to search for an altimeter's `breaking point' und
 \subsection{Test Definition}
 \begin{table}[]
 \begin{tabular}{c|c|c|c|c|c|c|c|c}
-\multicolumn{4}{c|}{\textbf{Interference Signal}}   & \multicolumn{3}{c|}{\textbf{VSG RF Power}} & \multicolumn{2}{c}{\textbf{Power Durations}} \\
+\multicolumn{4}{c|}{\textbf{Interference Signal}}   & \multicolumn{3}{c|}{\textbf{VSG RF Power}} & \multicolumn{2}{c}{\textbf{Durations}} \\
 Modulation & Bandwidth & Center   & Offset & Min         & Step    & Max       & ON                & OFF              \\ \hline
 MSK        & 5 MHz     & 4300 MHz & 0 MHz  & -60 dBm     & 2 dB    & 10 dBm    & 10 s              & 10 s             \\
 Dual MSK   & 5 MHz     & 4300 MHz & 20 MHz & -60 dBm     & 2 dB    & 10 dBm    & 10 s              & 10 s             \\ \hline
@@ -485,31 +484,31 @@ Each VCO was configured to simulate the RF power of an altimeter (typically 30~d
 
 \begin{table}[]
 \begin{tabular}{c||ccccc}
-\textbf{VCO} & Power {[}dBm{]} & Fixed {[}dB{]} & Programmable {[}dB{]} & Path Loss {[}dB{]} & Power at RX {[}dBm\} \\ \hline
-\textbf{1}   & 4               & -18              & X                     & -16                & -30                  \\
-\textbf{2}   & 4               & -18              & X                     & -16                & -30                  \\ \hline
+\textbf{VCO} & Power {[}dBm{]} & Fixed {[}dB{]} & Programmable {[}dB{]} & Path Loss {[}dB{]} & Power at RX \\ \hline
+\textbf{1}   & 4               & -18              & X                     & -16                & -30 dBm          \\
+\textbf{2}   & 4               & -18              & X                     & -16                & -30~dBm                \\ \hline
 
 
-\textbf{3}   & 4               & 0              & -56                   & -40                & -92                  \\
-\textbf{4}   & 4               & 0              & -56                   & -40                & -92                   \\ \hline
+\textbf{3}   & 4               & 0              & -56                   & -40                & -92~dBm                  \\
+\textbf{4}   & 4               & 0              & -56                   & -40                & -92~dBm                   \\ \hline
 
 
-\textbf{5}   & 4               & 0              & -26                    & -40                & -62                 \\
-\textbf{6}   & 4               & 0              & -26                    & -40 			& -62                  \\
-\textbf{7}   & 4               & 0              & -26                    & -40                & -62                  \\
-\textbf{8}   & 4               & 0             & -26                    & -40                & -62                  \\ \hline
+\textbf{5}   & 4               & 0              & -26                    & -40                & -62~dBm                 \\
+\textbf{6}   & 4               & 0              & -26                    & -40 			& -62~dBm                  \\
+\textbf{7}   & 4               & 0              & -26                    & -40                & -62~dBm                  \\
+\textbf{8}   & 4               & 0             & -26                    & -40                & -62 ~dBm                 \\ \hline
 
 
-\textbf{9}   & 4               & 0              & -26                   & -40                & -62                  \\
-\textbf{10}  & 4               & 0              & -26                   & -40                & -62                  \\
-\textbf{11}  & 4               & -23            & -26                   & -40               & -85                  \\
-\textbf{12}  & 4               & -23             & -26                   & -40                & -85                  \\ \hline
+\textbf{9}   & 4               & 0              & -26                   & -40                & -62~dBm                  \\
+\textbf{10}  & 4               & 0              & -26                   & -40                & -62~dBm                  \\
+\textbf{11}  & 4               & -23            & -26                   & -40               & -85~dBm                  \\
+\textbf{12}  & 4               & -23             & -26                   & -40                & -85~dBm                  \\ \hline
 
 
-\textbf{13}  & 4               & 0              & -49                   & -40                & -85                  \\
-\textbf{14}  & 4               & 0              & -49                   & -40                & -85                  \\
-\textbf{15}  & 4               & 0              & -49                   & -40                & -85                  \\
-\textbf{16}  & 4               & 0              & -49                   & -40                & -85                 
+\textbf{13}  & 4               & 0              & -49                   & -40                & -85~dBm                  \\
+\textbf{14}  & 4               & 0              & -49                   & -40                & -85~dBm                  \\
+\textbf{15}  & 4               & 0              & -49                   & -40                & -85~dBm                  \\
+\textbf{16}  & 4               & 0              & -49                   & -40                & -85~dBm                 
 \end{tabular}
 \caption{VCO Attenuation Configurations for 200ft Worst Case.}
 \label{tab:VCO_Pow}
