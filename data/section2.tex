@@ -20,7 +20,7 @@ In addition to laying out performance standards for radar altimeters, the DO-155
 \begin{figure}[ht]
 \centering
 \includegraphics[scale=0.5]{DO-155_Test_Setup.PNG}
-\caption{Basic Altimeter Test Setup Diagram from DO-155~\cite{noauthor_minimum_1974}.}
+\caption{Diagram of Basic Altimeter Test Setup Diagram specified in DO-155.}
 
 \label{fig:Basic Testbed}
 
@@ -628,14 +628,6 @@ OFDM          & 200 MHz     & 4300 MHz   & -56 dBm     & 2 dB    & 19 dBm    & 6
 Table~\ref{tab:Wideband} shows the interference signals used to run the in band dual vsg tests. The purpose of these tests was to find the `breaking point' of each altimeter when subjected to a full band of interference signals under worse than possible real life conditions. When the worst breaking point among the altimeters sampled was found, the committee would add a margin of a few dB and propose that number to regulators. These results are discussed in Section~\ref{sec:dvsg_ib_results}
 
 \subsection{Out of Band Testing}\label{sub:oob}
-Finally, Table~\ref{tab:oob} shows a representative test definition for the out of band tests run under AFE76s2. These tests were designed to develop an RF power mask on the upper and lower side of the radio altimeter bands. This mask could be brought to regulators with a proposal to limit users in adjacent bands a certain margin below the altimeter breaking point. 
-
-Initially, the 5~MHz wide OFDM signals used in previous tests were tried. However, after initial results came in, more granular sweep was desired, so the bandwidth was reduced to the 200~kHz signals shown in Table~\ref{tab:oob}. When the 200~kHz waveform was measured on the spectrum analyzer, it was noticed that the waveform center was slightly offset from the carrier frequency. The lower edge of the waveform was approximately 35~kHz below the carrier, and the upper edge was approximately 165~kHz above the carrier. 
-
-Since the test goal was to step an OFDM waveform with the upper edge directly on 4.2~GHz, and step away from the altimeter band till the upper edge was 5~MHz away from the band edge. Waveforms in the upper adjacent band were placed at 4200.035~MHz and stepped to 4205.035~MHz for the same reason.
-
-These tests are ongoing at the time of writing, and will likely go through a few more iterations before being finalized, but preliminary results from this test definition are discussed in Section~\ref{sec:dvsg_oob_results}.
-
 \begin{table}[]
 \begin{tabular}{cc|cc|ccc|cc}
 \multicolumn{4}{c|}{\textbf{Interference Signal}}                                     & \multicolumn{3}{c|}{\textbf{VSG RF Power}} & \multicolumn{2}{c}{\textbf{Durations}} \\
@@ -647,3 +639,13 @@ These tests are ongoing at the time of writing, and will likely go through a few
 \caption{Example Interference Signals For Out Of Band Testing.}
 \label{tab:oob}
 \end{table}
+
+Finally, Table~\ref{tab:oob} shows a representative test definition for the out of band tests run under AFE76s2. These tests were designed to develop an RF power mask on the upper and lower side of the radio altimeter bands. This mask could be brought to regulators with a proposal to limit users in adjacent bands a certain margin below the altimeter breaking point. 
+
+Initially, the 5~MHz wide OFDM signals used in previous tests were tried. However, after initial results came in, more granular sweep was desired, so the bandwidth was reduced to the 200~kHz signals shown in Table~\ref{tab:oob}. When the 200~kHz waveform was measured on the spectrum analyzer, it was noticed that the waveform center was slightly offset from the carrier frequency. The lower edge of the waveform was approximately 35~kHz below the carrier, and the upper edge was approximately 165~kHz above the carrier. 
+
+Since the test goal was to step an OFDM waveform with the upper edge directly on 4.2~GHz, and step away from the altimeter band till the upper edge was 5~MHz away from the band edge. Waveforms in the upper adjacent band were placed at 4200.035~MHz and stepped to 4205.035~MHz for the same reason.
+
+These tests are ongoing at the time of writing, and will likely go through a few more iterations before being finalized, but preliminary results from this test definition are discussed in Section~\ref{sec:dvsg_oob_results}.
+
+
